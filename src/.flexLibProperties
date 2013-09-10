@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.backendless.Backendless"/>
+    <classEntry path="com.backendless.BackendlessDataQuery"/>
+    <classEntry path="com.backendless.BackendlessUser"/>
+    <classEntry path="com.backendless.QueryOptions"/>
+    <classEntry path="com.backendless.config.BackendlessConfig"/>
+    <classEntry path="com.backendless.config.MessagingConfig"/>
+    <classEntry path="com.backendless.core.backendless"/>
+    <classEntry path="com.backendless.data.BackendlessCollection"/>
+    <classEntry path="com.backendless.data.IBackendlessEntity"/>
+    <classEntry path="com.backendless.data.IDataStore"/>
+    <classEntry path="com.backendless.data.IDynamicLoad"/>
+    <classEntry path="com.backendless.data.event.DynamicLoadEvent"/>
+    <classEntry path="com.backendless.data.store.DataStore"/>
+    <classEntry path="com.backendless.errors.ConfigurationError"/>
+    <classEntry path="com.backendless.errors.ConnectError"/>
+    <classEntry path="com.backendless.errors.InvalidArgumentError"/>
+    <classEntry path="com.backendless.errors.MediaError"/>
+    <classEntry path="com.backendless.errors.ObjectNotPersistableError"/>
+    <classEntry path="com.backendless.geo.BackendlessGeoQuery"/>
+    <classEntry path="com.backendless.geo.GeoCategory"/>
+    <classEntry path="com.backendless.geo.GeoPoint"/>
+    <classEntry path="com.backendless.geo.GeoUnit"/>
+    <classEntry path="com.backendless.geo.Metadata"/>
+    <classEntry path="com.backendless.geo.PointBase"/>
+    <classEntry path="com.backendless.helpers.ClassHelper"/>
+    <classEntry path="com.backendless.helpers.DeviceHelper"/>
+    <classEntry path="com.backendless.helpers.ObjectsBuilder"/>
+    <classEntry path="com.backendless.logging.targets.FileTarget"/>
+    <classEntry path="com.backendless.media.BackendlessVideoDisplay"/>
+    <classEntry path="com.backendless.media.BackendlessVideoPlayer"/>
+    <classEntry path="com.backendless.media.BackendlessVideoSource"/>
+    <classEntry path="com.backendless.media.MediaControl"/>
+    <classEntry path="com.backendless.media.RecordingControl"/>
+    <classEntry path="com.backendless.media.StreamSettings"/>
+    <classEntry path="com.backendless.messaging.BackendlessChannel"/>
+    <classEntry path="com.backendless.messaging.DeliveryOptions"/>
+    <classEntry path="com.backendless.messaging.DeviceRegistration"/>
+    <classEntry path="com.backendless.messaging.ISubscriptionResponder"/>
+    <classEntry path="com.backendless.messaging.Message"/>
+    <classEntry path="com.backendless.messaging.MessageStatus"/>
+    <classEntry path="com.backendless.messaging.PublishOptions"/>
+    <classEntry path="com.backendless.messaging.PushNotification"/>
+    <classEntry path="com.backendless.messaging.PushNotificationEvent"/>
+    <classEntry path="com.backendless.messaging.Subscription"/>
+    <classEntry path="com.backendless.messaging.SubscriptionOptions"/>
+    <classEntry path="com.backendless.messaging.SubscriptionResponder"/>
+    <classEntry path="com.backendless.messaging.events.MessagesPoolFaultEvent"/>
+    <classEntry path="com.backendless.messaging.events.MessagesPoolResultEvent"/>
+    <classEntry path="com.backendless.property.AbstractProperty"/>
+    <classEntry path="com.backendless.property.ObjectProperty"/>
+    <classEntry path="com.backendless.property.UserProperty"/>
+    <classEntry path="com.backendless.rpc.BackendlessClient"/>
+    <classEntry path="com.backendless.service.BackendlessService"/>
+    <classEntry path="com.backendless.service._FileService"/>
+    <classEntry path="com.backendless.service._GeoService"/>
+    <classEntry path="com.backendless.service._MediaService"/>
+    <classEntry path="com.backendless.service._MessagingService"/>
+    <classEntry path="com.backendless.service._PersistenceService"/>
+    <classEntry path="com.backendless.service._UserService"/>
+    <classEntry path="com.backendless.upload.FileServiceActionResult"/>
+    <classEntry path="com.backendless.upload.events.FileUploadFaultEvent"/>
+    <classEntry path="com.backendless.upload.events.FileUploadResultEvent"/>
+    <classEntry path="com.backendless.validators.ArgumentValidator"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

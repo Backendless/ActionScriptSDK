@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+  - Copyright (C) 2013 max.rozdobudko@gmail.com
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<fx:Object xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:parsley="http://www.spicefactory.org/parsley"
+           xmlns:domain="com.backendless.flex.examples.chat.domain.*"
+           xmlns:application="com.backendless.flex.examples.chat.application.*"
+           xmlns:presentation="com.backendless.flex.examples.chat.presentation.*"
+           xmlns:infrastructure="com.backendless.flex.examples.chat.infrastructure.*">
+
+    <fx:Script>
+        <![CDATA[
+        import com.backendless.flex.examples.chat.application.commands.HandleGoodbyeCommand;
+        import com.backendless.flex.examples.chat.application.commands.HandleHelloCommand;
+        import com.backendless.flex.examples.chat.application.commands.HandleMessageCommand;
+        import com.backendless.flex.examples.chat.application.commands.HandleTextCommand;
+        import com.backendless.flex.examples.chat.application.commands.JoinChatCommand;
+        import com.backendless.flex.examples.chat.application.commands.LeaveChatCommand;
+        import com.backendless.flex.examples.chat.application.commands.NavigateToCommand;
+        import com.backendless.flex.examples.chat.application.commands.HandleMessageCommand;
+        import com.backendless.flex.examples.chat.application.commands.ReplyHelloCommand;
+        import com.backendless.flex.examples.chat.application.commands.SayGoodbyeCommand;
+        import com.backendless.flex.examples.chat.application.commands.SayHelloCommand;
+        import com.backendless.flex.examples.chat.application.commands.SendMessageCommand;
+        import com.backendless.flex.examples.chat.application.commands.StartupCommand;
+        import com.backendless.flex.examples.chat.application.commands.SystemMessageCommand;
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+
+        <!--Application-->
+
+        <parsley:MapCommand type="{StartupCommand}" />
+        <parsley:MapCommand type="{NavigateToCommand}" />
+
+        <parsley:MapCommand type="{JoinChatCommand}" />
+        <parsley:MapCommand type="{LeaveChatCommand}" />
+
+        <parsley:MapCommand type="{SayHelloCommand}" />
+        <parsley:MapCommand type="{SayGoodbyeCommand}" />
+        <parsley:MapCommand type="{ReplyHelloCommand}" />
+
+        <parsley:MapCommand type="{SendMessageCommand}" />
+
+        <parsley:MapCommand type="{SystemMessageCommand}" />
+
+        <parsley:MapCommand type="{HandleTextCommand}" />
+        <parsley:MapCommand type="{HandleHelloCommand}" />
+        <parsley:MapCommand type="{HandleGoodbyeCommand}" />
+        <parsley:MapCommand type="{HandleMessageCommand}" />
+
+        <!--Domain-->
+
+        <domain:Chat />
+
+        <application:Model />
+
+        <!--Presentation-->
+
+        <presentation:MainPM />
+
+        <presentation:NamePM />
+
+        <presentation:ChatPM />
+
+        <!--Infrastructure-->
+
+        <infrastructure:Subscriber />
+
+    </fx:Declarations>
+
+</fx:Object>

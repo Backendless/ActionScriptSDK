@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="shared-lib">
+    <configurations>
+      <configuration name="shared-lib" output-type="Library" output-file="com_backendless_examples_flex_shared.swc" output-folder="$MODULE_DIR$/../out/production/shared-lib">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-name="backendless" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options>
+          <option name="filesToIncludeInSWC" value="$MODULE_DIR$/src/defaults.css&#10;$MODULE_DIR$/assets/images&#10;$MODULE_DIR$/assets/css&#10;$MODULE_DIR$/assets/fonts" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assets" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="backendless" level="project" />
+  </component>
+</module>
+

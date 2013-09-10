@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  - Copyright (C) 2013 max.rozdobudko@gmail.com
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+         xmlns:cairngorm="http://ns.adobe.com/cairngorm" xmlns:components="com.backendless.examples.flex.components.*"
+         currentState="login"
+         xmlns:ns="http://www.spicefactory.org/parsley" show="viewActivateHandler(event);">
+	
+	<fx:Script>
+		<![CDATA[
+
+        import com.backendless.examples.flex.login.presentation.ILoginPM;
+
+        import mx.events.FlexEvent;
+
+        import spark.events.IndexChangeEvent;
+
+        [Inject]
+        [Bindable]
+        public var model:ILoginPM;
+
+        protected function buttonbar_changeHandler(event:IndexChangeEvent):void
+        {
+            if (buttonbar.selectedItem)
+                this.currentState = buttonbar.selectedItem.data;
+        }
+
+        protected function viewActivateHandler(event:FlexEvent):void
+        {
+            model.reset();
+
+            currentState = "login";
+        }
+
+        ]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+        <ns:Configure />
+        <cairngorm:ValidatorGroupSubscriber>
+            <cairngorm:ValidatorSubscriber validator="{this.model.loginValidators.emailValidator}" listener="{loginEmailInput}" />
+            <cairngorm:ValidatorSubscriber validator="{this.model.loginValidators.passwordValidator}" listener="{loginPasswordInput}" />
+        </cairngorm:ValidatorGroupSubscriber>
+        <cairngorm:ValidatorGroupSubscriber>
+            <cairngorm:ValidatorSubscriber validator="{this.model.registerValidators.nameValidator}" listener="{nameInput}" />
+            <cairngorm:ValidatorSubscriber validator="{this.model.registerValidators.emailValidator}" listener="{registerEmailInput}" />
+            <cairngorm:ValidatorSubscriber validator="{this.model.registerValidators.passwordValidator}" listener="{registerPasswordInput}" />
+            <cairngorm:ValidatorSubscriber validator="{this.model.registerValidators.verifyPasswordValidator}" listener="{verifyPasswordInput}" />
+            <cairngorm:ValidatorSubscriber validator="{this.model.registerValidators.passwordsMatchValidator}" listener="{verifyPasswordInput}" />
+        </cairngorm:ValidatorGroupSubscriber>
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="login" />
+		<s:State name="register" />
+	</s:states>
+
+    <s:Rect left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <s:SolidColor color="#FFFFFF" />
+        </s:fill>
+    </s:Rect>
+
+    <!-- Login Form -->
+	
+	<s:VGroup left="0" right="0" top="0" paddingLeft="20" paddingTop="20" paddingRight="20" paddingBottom="20" gap="10" includeIn="login">
+		<s:TextInput id="loginEmailInput" width="100%" height="40" prompt="Email Address" text="@{this.model.userLogin.email}" />
+		<s:TextInput id="loginPasswordInput" width="100%" height="40" prompt="Password" displayAsPassword="true" text="@{this.model.userLogin.password}" />
+		<s:HGroup width="100%" gap="10">
+			<s:Button styleName="btnPink" width="50%" height="40" label="Show Password" click="loginPasswordInput.displayAsPassword = !loginPasswordInput.displayAsPassword" />
+			<s:Button styleName="btnPink" width="50%" height="40" label="Remember Me" />
+		</s:HGroup>
+		<s:Button styleName="btnBlue" width="100%" height="50" label="Login" click="model.login();" />
+        <components:Message width="100%" severity="error" text="{this.model.loginErrorString}" />
+	</s:VGroup>
+
+    <s:Label horizontalCenter="0" bottom="80" text="Singning In..." includeInLayout="{this.model.isSigningIn}" visible="{this.model.isSigningIn}" />
+
+    <!-- Register Form -->
+
+    <s:VGroup left="0" top="0" right="0" paddingLeft="20" paddingTop="20" paddingRight="20" paddingBottom="20" gap="10" includeIn="register">
+		<s:TextInput id="nameInput" width="100%" height="40" prompt="Name" text="@{this.model.userRegister.name}" />
+		<s:TextInput id="registerPasswordInput" width="100%" height="40" prompt="Password" displayAsPassword="true" text="@{this.model.userRegister.password}" />
+		<s:TextInput id="verifyPasswordInput" width="100%" height="40" prompt="Verify Password" displayAsPassword="true" text="@{this.model.userRegister.passwordVerify}" />
+		<s:TextInput id="registerEmailInput" width="100%" height="40" prompt="Email" text="@{this.model.userRegister.email}"/>
+		<s:HGroup width="100%" gap="10">
+			<s:Button styleName="btnPink" width="50%" height="50" label="Reset" click="model.reset();" includeIn="register" />
+			<s:Button styleName="btnBlue" width="50%" height="50" label="Submit" click="model.register();" includeIn="register" />
+		</s:HGroup>
+        <components:Message width="100%" severity="error" text="{this.model.registerErrorString}" />
+	</s:VGroup>
+
+	<s:Label horizontalCenter="0" bottom="80" text="Registering..." includeInLayout="{this.model.isRegistering}" visible="{this.model.isRegistering}" />
+
+    <!-- Control Bar -->
+
+	<s:ButtonBar id="buttonbar" left="0" right="0" bottom="0" height="60" requireSelection="true" selectedIndex.login="0" selectedIndex.register="1" change="buttonbar_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:Object label="Login" data="login" />
+				<fx:Object label="Register" data="register" />
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ButtonBar>
+	
+</s:Group>

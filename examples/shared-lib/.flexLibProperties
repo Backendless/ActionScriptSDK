@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses/>
+  <includeResources>
+    <resourceEntry destPath="css/font.css" sourcePath="css/font.css"/>
+    <resourceEntry destPath="css/text.css" sourcePath="css/text.css"/>
+    <resourceEntry destPath="css/view.css" sourcePath="css/view.css"/>
+    <resourceEntry destPath="fonts/FontAwesome.otf" sourcePath="fonts/FontAwesome.otf"/>
+    <resourceEntry destPath="fonts/Georgia Italic.ttf" sourcePath="fonts/Georgia Italic.ttf"/>
+    <resourceEntry destPath="fonts/Georgia.ttf" sourcePath="fonts/Georgia.ttf"/>
+    <resourceEntry destPath="fonts/Lobster 1.4.otf" sourcePath="fonts/Lobster 1.4.otf"/>
+    <resourceEntry destPath="fonts/MesloLGS-Bold.ttf" sourcePath="fonts/MesloLGS-Bold.ttf"/>
+    <resourceEntry destPath="fonts/MesloLGS-BoldItalic.ttf" sourcePath="fonts/MesloLGS-BoldItalic.ttf"/>
+    <resourceEntry destPath="fonts/MesloLGS-Italic.ttf" sourcePath="fonts/MesloLGS-Italic.ttf"/>
+    <resourceEntry destPath="fonts/MesloLGS-Regular.ttf" sourcePath="fonts/MesloLGS-Regular.ttf"/>
+    <resourceEntry destPath="fonts/MyriadPro-It.otf" sourcePath="fonts/MyriadPro-It.otf"/>
+    <resourceEntry destPath="fonts/MyriadPro-Regular.otf" sourcePath="fonts/MyriadPro-Regular.otf"/>
+    <resourceEntry destPath="images/actionbar-background-160.png" sourcePath="images/actionbar-background-160.png"/>
+    <resourceEntry destPath="images/ajax-loader.gif" sourcePath="images/ajax-loader.gif"/>
+    <resourceEntry destPath="images/beer-area.png" sourcePath="images/beer-area.png"/>
+    <resourceEntry destPath="images/chevron-right.png" sourcePath="images/chevron-right.png"/>
+    <resourceEntry destPath="images/down-button.png" sourcePath="images/down-button.png"/>
+    <resourceEntry destPath="images/icon-globe.png" sourcePath="images/icon-globe.png"/>
+    <resourceEntry destPath="images/icon-increase.png" sourcePath="images/icon-increase.png"/>
+    <resourceEntry destPath="images/icon-minus.png" sourcePath="images/icon-minus.png"/>
+    <resourceEntry destPath="images/icon-plus.png" sourcePath="images/icon-plus.png"/>
+    <resourceEntry destPath="images/loading1.swf" sourcePath="images/loading1.swf"/>
+    <resourceEntry destPath="images/up-button.png" sourcePath="images/up-button.png"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>

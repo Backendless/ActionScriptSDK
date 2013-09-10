@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  - Copyright (C) 2013 max.rozdobudko@gmail.com
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	
+	<fx:Metadata>
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled"/>
+		<s:State name="down"/>
+		<s:State name="over"/>
+		<s:State name="up"/>
+	</s:states>
+	
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="#D4D4D4"
+								color.down="#C3C3C3"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#EFEFEF" ratio="0.0"
+								 />
+				<s:GradientEntry color="#DDDDDD" ratio="1.0"
+								 />
+			</s:LinearGradient>
+		</s:fill>
+		<s:fill.down>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#CBCBCB" ratio="0.0"
+								 />
+				<s:GradientEntry color="#E6E6E6" ratio="0.08"
+								 />
+				<s:GradientEntry color="#E6E6E6" ratio="1.0"
+								 />
+			</s:LinearGradient>
+		</s:fill.down>
+		<!--<s:filters.down>
+			<s:GlowFilter color="#000000" blurX="6" blurY="0" inner="true" alpha="0.4" />
+		</s:filters.down>-->
+	</s:Rect>
+	
+	<s:Label id="labelDisplay" left="10" right="10" top="10" bottom="10" color="#333333"
+			 maxDisplayedLines="1" textAlign="center" verticalAlign="middle" verticalCenter="2"
+			 color.down="#333333"/>
+	
+</s:Skin>

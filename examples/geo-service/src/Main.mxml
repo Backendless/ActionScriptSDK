@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="800" height="600"
+					   initialize="onInitialize(event)" xmlns:geodemo="com.backendless.examples.geoservice.geodemo.*">
+	<fx:Script>
+		<![CDATA[
+			import com.backendless.Backendless;
+            import com.backendless.examples.flex.AppSettings;
+
+            import mx.controls.Alert;
+
+            import mx.events.FlexEvent;
+			
+			private function onInitialize( event:FlexEvent ):void
+			{
+				if( AppSettings.appId == "" || AppSettings.secretKey == "" || AppSettings.version == "" )
+                {
+                   Alert.show( "Missing application ID and secret key arguments. Login to Backendless Console, select your app and get the ID and key from the Manage > App Settings screen. Copy/paste the values into the variables defined in the com.backendless.examples.flex.AppSetting class (shared-lib project)" );
+                }
+                else
+                {
+                    Backendless.initApp( AppSettings.appId, AppSettings.secretKey, AppSettings.version );
+                    currentState = "MainScreenState";
+                }
+			}
+			
+			private function onPointsScreenCalled():void
+			{
+				currentState = "PointsScreenState";
+			}		
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingRight="5"
+						  verticalAlign="middle"/>
+	</s:layout>
+	
+	<s:states>
+		<s:State name="MainScreenState"/>
+		<s:State name="PointsScreenState"/>
+	</s:states>
+	
+	<geodemo:MainScreen includeIn="MainScreenState" 
+						pointsSearchStarted="onPointsScreenCalled()"/>
+	<geodemo:PointsScreen includeIn="PointsScreenState" />
+</s:WindowedApplication>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+  - Copyright (C) 2013 max.rozdobudko@gmail.com
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:parsley="http://www.spicefactory.org/parsley"
+               xmlns:components="com.backendless.examples.flex.components.*"
+               xmlns:view="com.backendless.flex.examples.chat.presentation.view.*"
+               currentState="{this.model.destination}"
+               applicationComplete="applicationCompleteHandler(event)" >
+
+    <fx:Script>
+        <![CDATA[
+        import com.backendless.flex.examples.chat.Context;
+        import com.backendless.flex.examples.chat.presentation.IMainPM;
+
+        import mx.events.FlexEvent;
+
+        [Inject]
+        [Bindable]
+        public var model:IMainPM;
+
+        private function applicationCompleteHandler(event:FlexEvent):void
+        {
+            model.startup();
+        }
+        ]]>
+    </fx:Script>
+
+    <fx:Style source="css/font.css" />
+    <fx:Style source="css/text.css" />
+    <fx:Style source="css/view.css" />
+
+    <fx:Declarations>
+        <parsley:Configure />
+        <parsley:ContextBuilder config="{Context}" />
+    </fx:Declarations>
+
+    <s:states>
+        <s:State name="init" />
+        <s:State name="name" />
+        <s:State name="chat" />
+    </s:states>
+
+    <components:Header id="header" width="100%" height="40" title="Backendless Chat Example" />
+
+    <view:NameView width="400" horizontalCenter="0" verticalCenter="0" includeIn="name" />
+
+    <view:ChatView left="0" top="40" right="0" bottom="40" includeIn="chat" />
+
+    <s:RichText styleName="h5" bottom="20" horizontalCenter="0">
+        <s:textFlow>
+            <s:TextFlow>
+                This is a sample application that demonstrates working with <s:span color="#5786FD">Backendless</s:span> MessagingService API
+            </s:TextFlow>
+        </s:textFlow>
+    </s:RichText>
+
+    <components:Output left="0" right="0" bottom="0" height="100" visible="{this.header.outputShown}" includeInLayout="{this.header.outputShown}" />
+
+    <components:Settings left="0" top="0" right="0" bottom="0" visible="{this.header.settingsShown}" includeInLayout="{this.header.settingsShown}" close="this.header.settingsShown = false;" />
+
+</s:Application>

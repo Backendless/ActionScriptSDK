@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:pushdemo="com.backendless.examples.messagingservice.pushdemo.*"
+			   applicationDPI="160" initialize="onInitialize(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.backendless.Backendless;
+            import com.backendless.examples.flex.AppSettings;
+			import com.backendless.examples.messagingservice.pushdemo.SimplePopup;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+
+			private function onInitialize( event:FlexEvent ):void
+			{
+				var simplePopup:SimplePopup = new SimplePopup(); 
+				PopUpManager.addPopUp(simplePopup, this, true);
+				simplePopup.title = "Info";
+				simplePopup.width = this.width;
+				simplePopup.messageField.text = "The Backendless Push example demonstrates native Android Push Notifications. Make sure to login to Backendless Console and configure Mobile Settings for your application. (Select App > Manage > App Settings > Mobile Settings). You will need to obtain Google Project Number and Google 'key for server apps' from https://code.google.com/apis/console.";
+				
+				if( AppSettings.appId == "" || AppSettings.secretKey == "" )
+                    throw new ArgumentError( "Missing application ID and secret key arguments. Login to Backendless Console, select your app and get the ID and key from the Manage > App Settings screen. Copy/paste the values into the variables defined in the com.backendless.examples.flex.AppSetting class (shared-lib project)" );
+
+				if( AppSettings.SENDER_ID == "" )
+					throw new ArgumentError( "Missing SENDER_ID argument. SENDER_ID must contain the Google Project Number. Login to Google API Console at https://code.google.com/apis/console and copy/paste the Project Number value into the constant defined below." );
+				
+				Backendless.initApp( AppSettings.appId, AppSettings.secretKey, AppSettings.version );
+				currentState = "MainScreenState";
+			}
+			
+			private function onPushScreenCalled():void
+			{
+				currentState = "PushScreenState";
+			}
+			
+			private function onMainScreenCalled():void
+			{
+				currentState = "MainScreenState";
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="MainScreenState"/>
+		<s:State name="PushScreenState"/>
+	</s:states>
+	
+	<pushdemo:MainScreen includeIn="MainScreenState" width="100%" height="100%"
+						 pushScreenCalled="onPushScreenCalled()"/>
+	<pushdemo:PushScreen includeIn="PushScreenState" width="100%" height="100%"
+						 mainScreenCalled="onMainScreenCalled()"/>
+</s:Application>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Metadata>
+		[Event("loggedIn")]
+		[Event("registrationCalled")]
+	</fx:Metadata>
+	
+	<fx:Script><![CDATA[
+		import com.backendless.Backendless;
+		
+		import mx.controls.Alert;
+		import mx.managers.CursorManager;
+		import mx.rpc.IResponder;
+		import mx.rpc.Responder;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		
+		
+		private function onLoginClick( event:MouseEvent ):void
+		{
+			if( emailField.text == "" )
+			{
+				Alert.show( "Email cannot be empty" );
+				return;
+			}
+			
+			if( passwordField.text == "" )
+			{
+				Alert.show( "Password cannot be empty" );
+				return;
+			}
+			
+			beginBusy();
+			var loginResponder:IResponder = new mx.rpc.Responder( loginSucceeded, loginFailed );
+			Backendless.UserService.login( emailField.text, passwordField.text, loginResponder );
+		}
+		
+		private function loginSucceeded( event:ResultEvent ):void
+		{
+			endBusy();
+			dispatchEvent( new Event("loggedIn") );
+		}
+		
+		private function loginFailed( fault:FaultEvent ):void
+		{
+			endBusy();
+			Alert.show( fault.fault.faultString );
+		}
+		
+		protected function onRegisterClick( event:MouseEvent ):void
+		{
+			dispatchEvent( new Event( 'registrationCalled' ) );
+		}
+		
+		private function beginBusy():void
+		{
+			loginButton.enabled = false;
+			CursorManager.setBusyCursor();
+		}
+		
+		private function endBusy():void
+		{
+			loginButton.enabled = true;
+			CursorManager.removeBusyCursor();
+		}
+	]]></fx:Script>
+	<s:Form width="100%" height="100%">
+		<s:layout>
+			<s:FormLayout verticalAlign="middle" horizontalAlign="center"/>
+		</s:layout>
+		<s:FormHeading label="Backendless UserService" fontSize="25" />
+		<s:VGroup horizontalAlign="right" paddingTop="20">
+			<s:FormItem label="Email address:" fontSize="14" >
+				<s:TextInput id="emailField" width="200"/>
+			</s:FormItem>
+			<s:FormItem label="Password:" fontSize="14" >
+				<s:TextInput id="passwordField" width="200" displayAsPassword="true"/>
+			</s:FormItem>
+			<s:FormItem >
+				<s:HGroup width="200" gap="15" horizontalAlign="center" paddingTop="10" verticalAlign="middle">
+					<s:Button id="loginButton" label="Login" click="onLoginClick(event)"/>
+					<s:Label text="or"/>
+					<mx:LinkButton label="Register" click="onRegisterClick(event)"/>
+				</s:HGroup>
+			</s:FormItem>
+		</s:VGroup>
+	</s:Form>
+	
+</s:Group>

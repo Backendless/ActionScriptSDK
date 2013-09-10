@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+  - Copyright (C) 2013 max.rozdobudko@gmail.com
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <fx:Script>
+        <![CDATA[
+        import com.backendless.examples.flex.logging.Logger;
+
+        [Bindable]
+        public var title:String;
+
+        [Bindable]
+        public var outputShown:Boolean;
+
+        [Bindable]
+        public var settingsShown:Boolean;
+
+        ]]>
+    </fx:Script>
+
+    <s:Rect width="100%" height="100%">
+        <s:fill>
+            <s:SolidColor color="#333333" />
+        </s:fill>
+    </s:Rect>
+
+    <s:Label left="10" verticalCenter="0" styleName="h2" text="{this.title}" />
+
+    <s:HGroup right="10" verticalCenter="0" verticalAlign="middle">
+        <s:Button styleName="iconButton" color="{Logger.get.hasErrors ? 0xDD6666 : 0x5786FD}" label="{Logger.get.hasErrors ? '&#xf071;' : '&#xf05a;'}" click="outputShown = !outputShown" />
+        <s:Button styleName="iconButton" color="#EEEEEE" label="&#xf085;" click="settingsShown = !settingsShown" />
+        <!--<s:ToggleButton styleName="iconToggleButton" selected="{this.outputShown}" color="#CCCCCC" label="&#xf022;" click="outputShown = !outputShown" />-->
+    </s:HGroup>
+
+
+</s:Group>

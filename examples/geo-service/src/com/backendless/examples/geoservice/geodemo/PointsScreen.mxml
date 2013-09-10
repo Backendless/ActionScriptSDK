@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="800" height="600"
+		 initialize="onInitialized(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.backendless.Backendless;
+			
+			import com.backendless.geo.BackendlessGeoQuery;
+			import com.backendless.geo.GeoUnit;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			import mx.rpc.IResponder;
+			import mx.rpc.Responder;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+            private static const SAMPLE_CATEGORY:String = "geoservice_sample";
+
+            [Bindable]
+			private var pointsCollection:ArrayCollection = new ArrayCollection;
+			
+			private var backendlessGeoQuery:BackendlessGeoQuery;
+			
+			private var gotPointsResponder:IResponder;
+			
+			protected function onInitialized(event:FlexEvent):void
+			{
+				radiusSlider.value = MainScreen.radius;
+				backendlessGeoQuery = new BackendlessGeoQuery();
+				backendlessGeoQuery.latitude = MainScreen.latitude as Number;
+				backendlessGeoQuery.longitude = MainScreen.longitude as Number;
+				backendlessGeoQuery.units = GeoUnit.KILOMETERS;
+				backendlessGeoQuery.includeMeta = true;
+				backendlessGeoQuery.categories = [SAMPLE_CATEGORY];
+				
+				gotPointsResponder = new mx.rpc.Responder( function( result:ResultEvent ):void
+				{
+					endBusy();
+					pointsCollection.source = result.result.data;
+					
+					if(pointsCollection.source.length == 0)
+						Alert.show("No geo points found");
+					
+				}, onFault );
+				
+				searchPoints();
+			}
+			
+			protected function radiusSlider_valueCommitHandler(event:FlexEvent):void
+			{
+				searchPoints();
+			}
+			
+			private function searchPoints():void
+			{
+				beginBusy();
+				backendlessGeoQuery.radius = radiusSlider.value; 
+				Backendless.GeoService.getPoints( backendlessGeoQuery, gotPointsResponder );
+			}
+			
+			protected function onFault( fault:FaultEvent ):void
+			{
+				endBusy();
+				Alert.show( fault.fault.faultString );
+			}
+			
+			private function beginBusy():void
+			{
+				radiusSlider.enabled = false;
+				CursorManager.setBusyCursor();
+			}
+			
+			private function endBusy():void
+			{
+				radiusSlider.enabled = true;
+				CursorManager.removeBusyCursor();
+			}	
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<s:HSlider id="radiusSlider" visible="true" width="50%" 
+				   changeEnd="radiusSlider_valueCommitHandler(event)" 
+				   liveDragging="true" maximum="40000" minimum="1" stepSize="1" value="1"/>
+		<s:HGroup width="50%" requestedColumnCount="2" >
+			<s:Label width="50%" text="1" textAlign="left"/>
+			<s:Label width="50%" text="40,000" textAlign="right"/>	
+		</s:HGroup>
+		<s:VGroup paddingTop="20" width="50%">
+			<s:DataGrid width="100%" height="100%" dataProvider="{pointsCollection}">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn dataField="metadata.city" headerText="City"></s:GridColumn>
+						<s:GridColumn dataField="latitude" headerText="Latitude"></s:GridColumn>
+						<s:GridColumn dataField="longitude" headerText="Longitude"></s:GridColumn>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+		</s:VGroup>
+	</s:VGroup>
+	
+</s:Group>

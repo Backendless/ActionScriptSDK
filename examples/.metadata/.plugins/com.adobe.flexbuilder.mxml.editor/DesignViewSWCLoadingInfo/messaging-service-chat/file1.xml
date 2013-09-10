@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<ListDetails label="SWC Loading Details" projectName="messaging-service-chat">
+
+
+<LoadedSetList label="LoadedSet List">
+
+
+<LoadingSet label="LoadingSet1:">
+
+
+<item  label="backendless.swc-633158831" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/backendless.swc-633158831/library.swf"/>
+
+
+<item  label="corelib-20070830.swc1963385457" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/corelib-20070830.swc1963385457/library.swf"/>
+
+
+<item  label="spicelib-util-3.1.0.swc759566337" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/spicelib-util-3.1.0.swc759566337/library.swf"/>
+
+
+<item  label="validation-1.13.swc-223319935" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/validation-1.13.swc-223319935/library.swf"/>
+
+
+<item  label="images" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/shared-lib.swc-1569712455/images/loading1.swf"/>
+
+
+<item  label="shared-lib.swc-1569712455" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/shared-lib.swc-1569712455/library.swf"/>
+
+
+<item  label="spicelib-reflect-3.0.0.swc274186865" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/spicelib-reflect-3.0.0.swc274186865/library.swf"/>
+
+
+<item  label="spicelib-logging-3.0.0.swc-355445887" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/spicelib-logging-3.0.0.swc-355445887/library.swf"/>
+
+
+<item  label="spicelib-commands-3.1.1.swc708398137" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/spicelib-commands-3.1.1.swc708398137/library.swf"/>
+
+
+<item  label="spicelib-xml-mapper-3.0.2.swc1334738353" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/spicelib-xml-mapper-3.0.2.swc1334738353/library.swf"/>
+
+
+<item  label="parsley-core-3.0.0.swc-1638922199" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/parsley-core-3.0.0.swc-1638922199/library.swf"/>
+
+
+<item  label="parsley-flex-3.0.0.swc-1234090247" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/parsley-flex-3.0.0.swc-1234090247/library.swf"/>
+
+
+<item  label="parsley-xml-3.0.0.swc-1769500423" path="/Users/mark/dev/backendless/src/client/sdk/actionscript/examples/backendless-actionscript/examples/.metadata/.plugins/com.adobe.flexbuilder.codemodel/SwcCache/parsley-xml-3.0.0.swc-1769500423/library.swf"/>
+
+
+</LoadingSet>
+
+
+</LoadedSetList>
+
+
+<RemovedSetList label="RemovedSet List">
+
+
+<RemovedSet label="RemovedSet1:">
+
+
+<item  label="No Item present in this set"/>
+
+
+</RemovedSet>
+
+
+</RemovedSetList>
+
+
+</ListDetails>
+
+

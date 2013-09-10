@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="to-do">
+    <configurations>
+      <configuration name="to-do" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/../out/production/com.backendless.examples.flex.todo" use-html-wrapper="true" wrapper-template-path="$MODULE_DIR$/html-template">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry module-name="shared-lib" build-configuration-name="shared-lib">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="parsley-and-backendless-libs" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="parsley" level="project" />
+    <orderEntry type="library" name="shared" level="project" />
+    <orderEntry type="module" module-name="shared-lib" />
+    <orderEntry type="library" name="parsley-and-backendless-libs" level="project" />
+  </component>
+</module>
+

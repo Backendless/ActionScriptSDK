@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<backendless-config>
+	<sections>
+		<general>
+			<!-- nothing is here yet -->
+		</general>
+		
+		<services>
+			<messaging>
+				<!-- Delay in milliseconds between the poolMessages invokes. Default value is 1000 ms. 
+					Negative values are not allowed -->
+				<pooling_delay>999</pooling_delay>
+				
+				<!-- A number of allowed faults during the client subscription. Default value is 5. 
+					If the value less than 1, 0 will be assigned -->
+				<allowed_connection_faults>4</allowed_connection_faults>
+				
+				<!-- Time, a delay, in ms between the re-connection attempts in case if a client is 
+					unable to subscribe. Default value is 1000 ms If the value less than 1, 0 will be assigned -->
+				<reconnection_delay>999</reconnection_delay>
+				
+			</messaging>
+		</services>
+	</sections>
+</backendless-config>

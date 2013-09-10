@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:demo="com.backendless.examples.userservice.demo.*"
+					   initialize="onInitialize(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.backendless.Backendless;
+            import com.backendless.examples.flex.AppSettings;
+
+            import mx.controls.Alert;
+
+            import mx.events.FlexEvent;
+			
+			private function onInitialize( event:FlexEvent ):void
+			{
+                if( AppSettings.appId == "" || AppSettings.secretKey == "" || AppSettings.version == "" )
+                {
+                    Alert.show( "Missing application ID and secret key arguments. Login to Backendless Console, select your app and get the ID and key from the Manage > App Settings screen. Copy/paste the values into the variables defined in the com.backendless.examples.flex.AppSetting class (shared-lib project)" );
+                }
+                else
+                {
+            	    Backendless.initApp( AppSettings.appId, AppSettings.secretKey, AppSettings.version );
+				    currentState = "LoginScreenState";
+                }
+			}
+			
+			private function onLoggedInScreenCalled():void
+			{
+				currentState = 'LoggedInState';
+			}
+			
+			private function onRegistrationScreenCalled():void
+			{
+				currentState = "RegistrationScreenState";
+			}
+			
+			private function onHomeScreenCalled():void
+			{
+				currentState = 'LoginScreenState';
+			}
+						
+			private function onRegisteredScreenCalled():void
+			{
+				currentState = 'RegisteredState';
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" paddingLeft="5" paddingRight="5"
+						  verticalAlign="middle"/>
+	</s:layout>
+	
+	<s:states>
+		<s:State name="LoginScreenState"/>
+		<s:State name="LoggedInState"/>
+		<s:State name="RegistrationScreenState"/>
+		<s:State name="RegisteredState"/>
+	</s:states>
+	
+	<demo:LogInScreen includeIn="LoginScreenState" 
+					  loggedIn="onLoggedInScreenCalled()" registrationCalled="onRegistrationScreenCalled()"/>
+	<demo:LoggedInScreen includeIn="LoggedInState"
+						 loggedOut="onHomeScreenCalled()"/>
+	<demo:RegistrationScreen includeIn="RegistrationScreenState"
+							 onRegistered="onRegisteredScreenCalled()" homeCalled="onHomeScreenCalled()"/>
+	<demo:RegisteredScreen includeIn="RegisteredState"
+						   homeCalled="onHomeScreenCalled()"/>
+</s:WindowedApplication>
