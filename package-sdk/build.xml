@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AS Examples" default="package">
+    <property name="build.dir" value="../sdk"/>
+
+
+	<target name="package" description="Package AS examples">
+        <mkdir dir="${build.dir}" />
+        <copy file="../lib/backendless.swc" todir="${build.dir}/lib" />
+        <copy file="../ane/BackendlessPN.ane" todir="${build.dir}/ane" />
+        <copy file="../getting-started.pdf" todir="${build.dir}" />
+        <copy file="../lib/backendless.swc" todir="../examples/shared-lib/libs/" overwrite="true" />
+        <copy file="../lib/backendless.swc" todir="../examples/user-service/user-service-plain/libs/" overwrite="true" />
+
+        <copy todir="${build.dir}/examples">
+            <fileset dir="../examples" />
+        </copy>
+
+        <zip destfile="backendless-sdk-actionscript.zip" update="true"
+                basedir="${build.dir}" />
+
+        <delete dir="${build.dir}"/>
+    </target>
+</project>
