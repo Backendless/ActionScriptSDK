@@ -15,4 +15,11 @@
 		<nature>com.adobe.flexbuilder.project.flexlibnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>/Users/mark/dev/backendless-git/backendless-sdk-actionscript/lib</location>
+		</link>
+	</linkedResources>
 </projectDescription>
