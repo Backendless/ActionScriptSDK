@@ -14,15 +14,9 @@ package com.backendless.media
 import com.backendless.errors.MediaError;
 import com.backendless.service._MediaService;
 
-//import flash.media.MediaType;
 
-import mx.controls.FormItemLabel;
-
-import org.osmf.media.MediaElement;
 import org.osmf.net.DynamicStreamingItem;
-
 import org.osmf.net.DynamicStreamingResource;
-
 import spark.components.mediaClasses.DynamicStreamingVideoItem;
 
 [DefaultProperty("streamItems")]
