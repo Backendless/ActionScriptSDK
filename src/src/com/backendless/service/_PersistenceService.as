@@ -56,14 +56,15 @@ package com.backendless.service
 		
 		public function of(candidate:Class):IDataStore {
 			if(candidate == BackendlessUser) {
-				throw new ObjectNotPersistableError("BackendlessUser class is not a persistable one. Please use the userService");
+				throw new ObjectNotPersistableError("BackendlessUser cannot be used with Data Service. Please use the Backendless.userService");
 			}
 			
 			var instance:IDataStore = _dataStoreInstances[candidate];
 			
-			if(instance == null) {
+			if( instance == null ) 
+			{
 				instance = new DataStore(candidate);
-				_dataStoreInstances[instance];
+				_dataStoreInstances[ candidate ] = instance;
 			}
 			return instance;
 		}

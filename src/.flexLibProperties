@@ -64,6 +64,7 @@
     <classEntry path="com.backendless.upload.events.FileUploadFaultEvent"/>
     <classEntry path="com.backendless.upload.events.FileUploadResultEvent"/>
     <classEntry path="com.backendless.validators.ArgumentValidator"/>
+    <classEntry path="com.backendless.data.store.Utils"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -20,7 +20,6 @@ package com.backendless.data.store
 	import com.backendless.Backendless;
 	import com.backendless.BackendlessDataQuery;
 	import com.backendless.data.BackendlessCollection;
-	import com.backendless.data.IBackendlessEntity;
 	import com.backendless.data.IDataStore;
 	import com.backendless.helpers.ClassHelper;
 	import com.backendless.helpers.ObjectsBuilder;
@@ -37,7 +36,6 @@ package com.backendless.data.store
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
-	import mx.utils.ObjectUtil;
 
 
 	public class DataStore extends EventDispatcher implements IDataStore
@@ -58,22 +56,22 @@ package com.backendless.data.store
 				"find", [Backendless.appId, Backendless.version, candidateClassName, query], responder);
 		}
 		
-		public function find(query:BackendlessDataQuery, responder:IResponder=null):BackendlessCollection
+		public function find(query:BackendlessDataQuery = null, responder:IResponder=null):BackendlessCollection
 		{
-			ArgumentValidator.notNull(query);
-			
-			if(!query.valid) {
-				throw new Error("Passed query is not valid.");
-			}
+			if( query != null )
+				ArgumentValidator.notNull( query );
 			
 			var result:BackendlessCollection = new BackendlessCollection(candidateFullClassName);
-			var token:AsyncToken = findByCriteria(query, responder);
+			var token:AsyncToken = findByCriteria(query);
 			token.addResponder(
 				new Responder(
 					function(event:ResultEvent):void
 					{
 						trace(event.result);
 						result.bindSource(event.result.data);
+						
+						if( responder )
+							responder.result( ResultEvent.createEvent( result, token,  event.message ) );
 					}, 
 					function(event:FaultEvent):void
 					{
@@ -85,7 +83,7 @@ package com.backendless.data.store
 			return result;
 		}
 		
-		public function findById(entityId:String, responder:IResponder):void
+		public function findById( entityId:String, responder:IResponder = null ):AsyncToken
 		{
 			ArgumentValidator.notEmpty(entityId);
 			ArgumentValidator.notNull(entityId);
@@ -96,26 +94,25 @@ package com.backendless.data.store
 				[Backendless.appId, Backendless.version, candidateClassName, entityId]
 			);
 			
-			token.addResponder(
-				new Responder(
-					function(event:ResultEvent):void
-					{
-						if (responder)
+			if( responder != null )
+				token.addResponder(
+					new Responder(
+						function(event:ResultEvent):void
 						{
-							responder.result(
-								ResultEvent.createEvent(ObjectsBuilder.build(candidateClass, event.result), token)
-							)
+							var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.build( candidateClass, event.result ), token );
+							responder.result( evt );
+						},
+						function(event:FaultEvent):void
+						{
+							onFault(event, responder);
 						}
-					},
-					function(event:FaultEvent):void
-					{
-						onFault(event, responder);
-					}
-				)
-			)
+					)
+				);
+				
+			return token;
 		}
 		
-		public function first(responder:IResponder):void
+		public function first( responder:IResponder = null ):AsyncToken
 		{
 			var token:AsyncToken = BackendlessClient.instance.invoke(
 				_PersistenceService.SERVICE_SOURCE, 
@@ -123,26 +120,25 @@ package com.backendless.data.store
 				[Backendless.appId, Backendless.version, candidateClassName]
 			);
 			
-			token.addResponder(
-				new Responder(
-					function (event:ResultEvent):void
-					{
-						if (responder)
+			if( responder != null )
+				token.addResponder(
+					new Responder(
+						function (event:ResultEvent):void
 						{
-							responder.result(
-								ResultEvent.createEvent(ObjectsBuilder.build(candidateClass, event.result),	token)
-							)
+							var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.build( candidateClass, event.result ), token );
+							responder.result( evt );
+						},
+						function (event:FaultEvent):void
+						{
+							onFault( event, responder );
 						}
-					},
-					function (event:FaultEvent):void
-					{
-						onFault(event, responder);
-					}
-				)
-			)
+					)
+				);
+			
+			return token;
 		}
 		
-		public function last(responder:IResponder):void
+		public function last( responder:IResponder = null ):AsyncToken
 		{
 			var token:AsyncToken = BackendlessClient.instance.invoke(
 				_PersistenceService.SERVICE_SOURCE, 
@@ -150,32 +146,31 @@ package com.backendless.data.store
 				[Backendless.appId, Backendless.version, candidateClassName] 
 			);
 			
-			token.addResponder(
-				new Responder(
-					function (event:ResultEvent):void
-					{
-						if (responder)
+			if( responder != null )
+				token.addResponder(
+					new Responder(
+						function (event:ResultEvent):void
 						{
-							responder.result(
-								ResultEvent.createEvent(ObjectsBuilder.build(candidateClass, event.result),	token)
-							)
+							var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.build( candidateClass, event.result ), token );
+							responder.result( evt );
+						},
+						function (event:FaultEvent):void
+						{
+							onFault( event, responder );
 						}
-					},
-					function (event:FaultEvent):void
-					{
-						onFault(event, responder);
-					}
-				)
-			)				
+					)
+				);
+			
+			return token;
 		}
 		
-		public function remove(candidate:IBackendlessEntity, responder:IResponder=null):void
+		public function remove( candidate:*, responder:IResponder=null ):AsyncToken
 		{
-			ArgumentValidator.notNull(candidate);
-			removeById(candidate.objectId, responder);	
+			ArgumentValidator.notNull( candidate );
+			return removeById( candidate.objectId, responder );	
 		}
 		
-		public function removeById(candidateId:String, responder:IResponder=null):void
+		public function removeById(candidateId:String, responder:IResponder=null):AsyncToken
 		{
 			ArgumentValidator.notNull(candidateId);
 			ArgumentValidator.notEmpty(candidateId);
@@ -186,100 +181,96 @@ package com.backendless.data.store
 				[Backendless.appId, Backendless.version, candidateClassName, candidateId]
 			);
 			
-			token.addResponder(
-				new Responder(
-					function(event:ResultEvent):void 
-					{
-						if (responder) responder.result(event);
-					}, 
-					function(event:FaultEvent):void 
-					{
-						onFault(event, responder);
-					}
-				)
-			);			
-		}
-		
-		public function save(candidate:IBackendlessEntity, responder:IResponder=null):void
-		{
-			ArgumentValidator.notNull(candidate, "the save method doesn't allow to pass null properties");
+			if( responder != null )
+				token.addResponder(
+					new Responder(
+						function( event:ResultEvent ):void 
+						{
+							responder.result( event );
+						}, 
+						function(event:FaultEvent):void 
+						{
+							onFault( event, responder );
+						}
+					)
+				);		
 			
-			handleSave(candidate, candidateClassName, responder);
+			return token;
 		}
 		
-		public function saveDynamic(className:String, candidate:Object, responder:IResponder=null):void
+		public function save( candidate:*, responder:IResponder=null ):AsyncToken
 		{
-			handleSave(candidate, className, responder);
+			ArgumentValidator.notNull( candidate, "the save method doesn't allow to pass null properties" );
+			return handleSave( candidate, candidateClassName, responder );
 		}
 		
-		private function handleSave(candidate:*, className:String, responder:IResponder=null):void {
-			var currentOperation:String = (candidate.objectId == null) ? "create" : "update";
+		public function saveDynamic( className:String, candidate:Object, responder:IResponder=null ):AsyncToken
+		{
+			return handleSave(candidate, className, responder);
+		}
+		
+		public function loadRelations( dataObject:*, relations:Array = null, responder:IResponder = null ):AsyncToken
+		{
+			if( relations == null )
+				relations = [ "*" ];
 			
-			addClassName( candidate, true );
+			var token:AsyncToken = BackendlessClient.instance.invoke(_PersistenceService.SERVICE_SOURCE, "findById", 
+				[Backendless.appId, Backendless.version, candidateClassName, dataObject[ "objectId" ], relations]);
+			
+			if( responder != null )
+				token.addResponder(
+					new Responder(
+						function(event:ResultEvent):void 
+						{
+							var object:Object = ObjectsBuilder.updateWith(dataObject, event.result );
+							var resultEvent:ResultEvent = ResultEvent.createEvent( object, token );
+							responder.result( resultEvent );
+						},
+						function(event:FaultEvent):void
+						{
+							onFault( event, responder );
+						}
+					)
+				);	
+			
+			return token;
+		}
+		
+		private function handleSave(candidate:*, className:String, responder:IResponder=null):AsyncToken 
+		{	
+			var currentOperation:String = "create";
+			
+			if( candidate.hasOwnProperty( "objectId" ) && candidate.objectId != null )
+				currentOperation = "update";
+			
+			Utils.addClassName( candidate, true );
 			
 			var token:AsyncToken = BackendlessClient.instance.invoke(_PersistenceService.SERVICE_SOURCE, currentOperation, 
 				[Backendless.appId, Backendless.version, className, candidate]);
 			
-			token.addResponder(
-				new Responder(
-					function(event:ResultEvent):void 
-					{
-						responder.result(
-							ResultEvent.createEvent(
-								ObjectsBuilder.updateWith(candidate, event.result),
-								token
-							)
-						);
-					},
-					function(event:FaultEvent):void
-					{
-						onFault(event, responder);
-					}
-				)
-			);
+			if( responder != null )
+				token.addResponder( new Responder(
+						function(event:ResultEvent):void 
+						{
+							var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.updateWith( candidate, event.result), token );
+							responder.result( evt );
+						},
+						function(event:FaultEvent):void
+						{
+							onFault( event, responder );
+						}
+					)
+				);
+			
+			return token;
 		}
 		
-		private function onFault(event:FaultEvent, responder:IResponder):void {
-			if(responder != null) {
-				responder.fault(event);
-			}	
-			dispatchEvent(event);
-		}
-	
-
-		private function addClassName(dataObject:*, isRoot:Boolean ):void 
+		private function onFault(event:FaultEvent, responder:IResponder):void 
 		{
-			if( dataObject is Array )
-			{
-				for( var prop:* in dataObject )
-					addClassName( dataObject[ prop ], false );
-			}
-			else if( !ObjectUtil.isSimple( dataObject ) )
-			{
-				var objInfo:Object = ObjectUtil.getClassInfo( dataObject );
+			if( responder != null )
+				responder.fault( event );
 				
-				for each(var item:QName in objInfo.properties) 
-				{
-					var obj:* = dataObject[ item.localName ];
-						
-					if( obj != null && (!ObjectUtil.isSimple( obj ) || obj is Array) ) 
-						addClassName( obj, false );
-				}
-				
-				if( !isRoot && !dataObject.hasOwnProperty( "___class" ) )
-				{
-					if( !ObjectUtil.isDynamicObject( dataObject ) )
-						throw new Error( "Cannot save/update object. Either declare '___class' property in all related objects. The property value must be the name of the class/table. Altenratively declare the class 'dynamic'" );
-						
-					var className:String  = getQualifiedClassName( dataObject );
-					var dot:int = className.lastIndexOf( ":" );
-					
-					if( dot > -1 )
-						className = className.substring( dot + 1 );
-					
-					dataObject[ "___class" ] = className;
-				}					
-			}
+			dispatchEvent( event );
 		}
 	}
 }

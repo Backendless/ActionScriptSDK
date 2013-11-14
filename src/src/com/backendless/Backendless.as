@@ -25,8 +25,12 @@ package com.backendless
     import com.backendless.service._MessagingService;
 	import com.backendless.service._PersistenceService;
 	import com.backendless.service._UserService;
+	import com.backendless.property.AbstractProperty;
+	import com.backendless.property.UserProperty;
+	import com.backendless.property.ObjectProperty;	
 
 	import mx.utils.StringUtil;
+	import flash.net.registerClassAlias;
 
     use namespace backendless;
 
@@ -79,7 +83,8 @@ package com.backendless
 		 *         and represents a snapshot of the configuration settings, set of schemas, user properties, etc.
 		 *
 		 */
-		public static function initApp(appId:String, secretKey:String, versionNum:String):void {
+		public static function initApp(appId:String, secretKey:String, versionNum:String):void 
+		{
 			_appId = appId;
 			_secretKey = secretKey;
 			_version = versionNum;
@@ -88,6 +93,10 @@ package com.backendless
 			_headers[APPLICATION_TYPE_HEADER] = APPLICATION_TYPE;
 			_headers[APPLICATION_ID_HEADER] = _appId;
 			_headers[SECRET_KEY_HEADER] = _secretKey;
+			
+			registerClassAlias( "com.backendless.services.users.property.AbstractProperty", AbstractProperty );
+			registerClassAlias( "com.backendless.services.users.property.UserProperty", UserProperty );
+			registerClassAlias( "com.backendless.services.persistence.ObjectProperty", ObjectProperty );
 			BackendlessClient.instance.backendless::initChannel();
 		}
 	
@@ -110,6 +119,11 @@ package com.backendless
 		{
 			return _userService;
 		}
+		
+		public static function get Data():_PersistenceService
+		{
+			return _persistenceService;
+		}		
 	
 		public static function get PersistenceService():_PersistenceService
 		{

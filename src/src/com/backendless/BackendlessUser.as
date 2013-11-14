@@ -23,6 +23,7 @@ package com.backendless
 	public class BackendlessUser
 	{
 		public static const PASSWORD:String = "password";
+		public static const EMAIL:String = "email";
 		
 		private var _properties:Object = {};
 		
@@ -36,6 +37,16 @@ package com.backendless
 			setProperty(PASSWORD, value);
 		}
 		
+		public function get email():String
+		{
+			return getProperty(EMAIL);
+		}
+		
+		public function set email(value:String):void
+		{
+			setProperty(EMAIL, value);
+		}		
+		
 		public function setProperty(key:String, value:*):void {
 			_properties[key] = value;
 		}
@@ -44,13 +55,18 @@ package com.backendless
 			return _properties[key];
 		}
 		
+		public function removeProperty( key:String ):void
+		{
+			delete _properties[ key ];
+		}
+		
 		public function get properties():Object {
 			return _properties;
 		}
 		
 		public function validate():void {
-			ArgumentValidator.notNull(password, "A password value can't be null");
-			ArgumentValidator.notEmpty(password, "A password value can't be an empty string");
+			ArgumentValidator.notNull(password, "Password value can't be null");
+			ArgumentValidator.notEmpty(password, "Password value can't be an empty string");
 		}
 	}
 }

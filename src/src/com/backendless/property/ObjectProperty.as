@@ -17,7 +17,6 @@
 */
 package com.backendless.property
 {
-	[RemoteClass(alias="com.backendless.services.persistence.ObjectProperty")]
 	public class ObjectProperty extends AbstractProperty
 	{
 		private var _relatedTable:String;

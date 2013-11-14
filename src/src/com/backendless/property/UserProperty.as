@@ -23,8 +23,8 @@ package com.backendless.property
 	 * @author Cyril Deba
 	 * 
 	 */
-	[RemoteClass(alias="com.backendless.services.users.UserProperty")]
-	public class UserProperty extends AbstractProperty
+	//[RemoteClass(alias="com.backendless.services.users.UserProperty")]
+	public class UserProperty extends ObjectProperty
 	{
 		private var _identity:Boolean;
 		private var _selected:Boolean;

@@ -4,6 +4,9 @@ import com.backendless.BackendlessUser;
 import com.backendless.errors.InvalidArgumentError;
 import com.backendless.validators.ArgumentValidator;
 
+import flash.utils.getQualifiedClassName;
+import flash.utils.getDefinitionByName;
+
 import mx.core.ClassFactory;
 import mx.utils.ObjectUtil;
 
@@ -40,9 +43,12 @@ public class ObjectsBuilder
 			var properties:Array = getProperties(source);
 			for each (var property:String in properties)
 			{
-				if (property == "created" || !target.hasOwnProperty(property)) continue;
+				//if (property == "created" || !target.hasOwnProperty(property)) continue;
 				try
 				{
+					//var className:String  = getQualifiedClassName( target[property] );
+					//var myClass:Class = getDefinitionByName( className ) as Class;
+					
 					target[property] = source[property];
 				}
 				catch (ex:Error)

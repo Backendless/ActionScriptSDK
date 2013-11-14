@@ -87,6 +87,9 @@ package com.backendless.service
 		{
 			ArgumentValidator.notNull(point);
 			validateCoordinates(point);
+			
+			if( point.categories == null || point.categories.length == 0 )
+				point.categories = [ DEFAULT_CATEGORY ];
 	
 			var token:AsyncToken = BackendlessClient.instance.invoke(SERVICE_SOURCE, "addPoint",
 				[Backendless.appId, Backendless.version, point]);

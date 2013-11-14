@@ -57,11 +57,10 @@ package com.backendless.rpc
 			return token;
 		}
 		
-		public static function get instance():BackendlessClient {
+		public static function get instance():BackendlessClient 
+		{
 			if(_instance == null)
-			{
 				_instance = new BackendlessClient(new BackendlessClientLock());
-			}
 			
 			return _instance;
 		}

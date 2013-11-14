@@ -39,7 +39,8 @@ package com.backendless.messaging
 			super(id, uri);
 		}
 		
-		public override function send(agent:MessageAgent, message:IMessage):void {
+		public override function send(agent:MessageAgent, message:IMessage):void 
+		{
 			message.headers = Backendless.headers;
 			super.send(agent, message);
 		}

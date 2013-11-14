@@ -5,11 +5,6 @@ package com.backendless
 		private var _properties:Array = [];
 		private var _whereClause:String;
 		private var _queryOptions:QueryOptions = new QueryOptions;
-		private var _columnNamesMap:Object = new Object();
-		
-		public function get valid():Boolean {
-			return true;
-		}
 
 		public function get properties():Array
 		{
@@ -40,16 +35,5 @@ package com.backendless
 		{
 			_queryOptions = value;
 		}
-
-		public function get columnNamesMap():Object
-		{
-			return _columnNamesMap;
-		}
-
-		public function set columnNamesMap(value:Object):void
-		{
-			_columnNamesMap = value;
-		}
-
 	}
 }

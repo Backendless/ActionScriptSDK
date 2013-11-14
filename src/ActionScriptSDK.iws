@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3650a740-92c8-450f-b4b1-08b08d2c8305" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ActionScriptSDK.ipr" afterPath="$PROJECT_DIR$/ActionScriptSDK.ipr" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../lib/backendless.swc" afterPath="$PROJECT_DIR$/../lib/Backendless.swc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.flexLibProperties" afterPath="$PROJECT_DIR$/.flexLibProperties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ActionScriptSDK.iws" afterPath="$PROJECT_DIR$/ActionScriptSDK.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/Backendless.as" afterPath="$PROJECT_DIR$/src/com/backendless/Backendless.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/BackendlessUser.as" afterPath="$PROJECT_DIR$/src/com/backendless/BackendlessUser.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/data/IDataStore.as" afterPath="$PROJECT_DIR$/src/com/backendless/data/IDataStore.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as" afterPath="$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/helpers/ObjectsBuilder.as" afterPath="$PROJECT_DIR$/src/com/backendless/helpers/ObjectsBuilder.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/messaging/BackendlessChannel.as" afterPath="$PROJECT_DIR$/src/com/backendless/messaging/BackendlessChannel.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/rpc/BackendlessClient.as" afterPath="$PROJECT_DIR$/src/com/backendless/rpc/BackendlessClient.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/service/_GeoService.as" afterPath="$PROJECT_DIR$/src/com/backendless/service/_GeoService.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/service/_PersistenceService.as" afterPath="$PROJECT_DIR$/src/com/backendless/service/_PersistenceService.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/service/_UserService.as" afterPath="$PROJECT_DIR$/src/com/backendless/service/_UserService.as" />
     </list>
     <ignored path="ActionScriptSDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,18 +94,38 @@
         <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_MessagingService.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="84" column="4" selection-start="3313" selection-end="3313" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../package-sdk/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="43" selection-start="950" selection-end="950" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_GeoService.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_GeoService.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="17" selection-start="3403" selection-end="3403" vertical-scroll-proportion="-0.16818182">
               <folding>
-                <element signature="e#1014#1049#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../package-sdk/build.xml">
+      <file leaf-file-name="Backendless.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/backendless/Backendless.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="53" selection-start="600" selection-end="600" vertical-scroll-proportion="0.2605753">
-              <folding />
+            <state line="65" column="64" selection-start="4693" selection-end="4693" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,10 +155,10 @@
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="321" />
-    <option name="y" value="156" />
+    <option name="x" value="761" />
+    <option name="y" value="250" />
     <option name="width" value="1713" />
-    <option name="height" value="1172" />
+    <option name="height" value="1067" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -154,6 +186,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -168,7 +210,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,6 +222,60 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="ActionScriptSDK" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionScriptSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backendless" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionScriptSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backendless" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionScriptSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
@@ -205,8 +300,8 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -337,27 +432,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="321" y="156" width="1713" height="1172" extended-state="0" />
+    <frame x="761" y="250" width="1713" height="1067" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24955009" sideWeight="0.6003806" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24955009" sideWeight="0.44517833" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3996194" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2585483" sideWeight="0.6003806" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25674865" sideWeight="0.44517833" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.55482167" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -444,17 +539,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_MessagingService.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="4" selection-start="3313" selection-end="3313" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1014#1049#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="84" column="4" selection-start="3313" selection-end="3313" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../package-sdk/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="53" selection-start="600" selection-end="600" vertical-scroll-proportion="0.2605753">
+        <state line="23" column="43" selection-start="950" selection-end="950" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/Backendless.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="64" selection-start="4693" selection-end="4693" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_GeoService.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="17" selection-start="3403" selection-end="3403" vertical-scroll-proportion="-0.16818182">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

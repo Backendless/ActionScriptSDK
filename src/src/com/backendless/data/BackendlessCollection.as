@@ -26,7 +26,6 @@ package com.backendless.data
 	import com.backendless.validators.ArgumentValidator;
 	
 	import flash.events.Event;
-	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	
 	import mx.collections.ArrayCollection;
@@ -34,6 +33,7 @@ package com.backendless.data
 	import mx.collections.IList;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
+	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
@@ -44,13 +44,6 @@ package com.backendless.data
 	 * @eventType DynamicLoadEvent.LOADED
 	 */
 	[Event(name="loaded", type="com.backendless.data.event.DynamicLoadEvent")]
-	
-	/**
-	 *
-	 *
-	 * @author Cyril Deba
-	 *
-	 */
 	public class BackendlessCollection extends ArrayCollection implements IDynamicLoad
 	{
 		private var _entityClass:Class;
@@ -60,116 +53,77 @@ package com.backendless.data
 	
 		private var _pageSize:int = 20;
 		private var _total:int;
-		private var _cacheSize:int;
 		private var _offset:int;
-	
-		private var _loadedPage:IList = new ArrayList();
-		private var _cachedData:Dictionary = new Dictionary();
-	
-		private var _fromCacheData:Array = [];
+	    private var _currentPage:ArrayCollection;
 		private var _tempOffset:int;
 	
-		public function BackendlessCollection(_entityName:String, cacheSize:int = 0)
+		public function BackendlessCollection( _entityName:String )
 		{
 			try
 			{
-				_entityClass = getDefinitionByName(_entityName) as Class;
+				_entityClass = getDefinitionByName( _entityName ) as Class;
 			}
-			catch (e:Error)
+			catch( e:Error )
 			{
-				trace(e);
+				trace( e );
 			}
 			
-			_cacheSize = cacheSize;
+			_currentPage = new ArrayCollection();
 			_loaded = source && source.length > 0;
 		}
 	
-		public function clearCache():void
+		public function getNextPage( responder:IResponder = null ):AsyncToken
 		{
-			_cachedData = new Dictionary();
-		}
-	
-		public function getCurrentPage():IList
-		{
-			return _loadedPage;
-		}
-	
-		public function getNextPage(update:Boolean = false):void
-		{
-			loadPage(_offset + _pageSize, _pageSize, update);
+			var token:AsyncToken = loadPage( _offset + _pageSize, _pageSize, responder );
 			_offset += _pageSize;
+			return token;
 		}
 	
-		public function getPage(offset:int, pageSize:int, update:Boolean = false):void
+		public function getPage( offset:int, pageSize:int, responder:IResponder = null ):AsyncToken
 		{
-			loadPage(offset, pageSize, update);
+			var token:AsyncToken = loadPage( offset, pageSize, responder );
 			_offset = offset;
+			return token;
 		}
 	
-		private function loadPage(offset:int, pageSize:int, update:Boolean):void
+		private function loadPage(offset:int, pageSize:int, responder:IResponder = null ):AsyncToken
 		{
 			ArgumentValidator.notNull(_entityClass, "Entity either doesn't exist or not initialized properly.")
 	
 			_tempOffset = offset;
-	
-			var responder:IResponder = new Responder(
-				function (event:ResultEvent):void
+			var query:BackendlessDataQuery = new BackendlessDataQuery();
+			query.queryOptions = new QueryOptions( pageSize, offset );
+			var token:AsyncToken = (Backendless.PersistenceService.of( _entityClass ) as DataStore ).findByCriteria( query );
+			var collection:BackendlessCollection = this;
+			token.addResponder( new Responder(
+				function( event:ResultEvent ):void
 				{
 					bindSource(event.result.data);
+
+					if( responder )
+						responder.result( ResultEvent.createEvent( collection, token,  event.message ) );
 				},
-				function (event:FaultEvent):void
+				function( event:FaultEvent ):void
 				{
-					throw new Error("unable load the page");
+					throw new Error( "unable load the page" );
 				}
-			);
+			));
 	
-			var query:BackendlessDataQuery = new BackendlessDataQuery();
-	
-			if (_cacheSize > 0 || !update)
-			{
-				_fromCacheData = [];
-				for (var i:int = 0; i < pageSize; i++)
-				{
-					var currentEntry:Object = _cachedData[offset + i + 1];
-	
-					if (currentEntry != null)
-					{
-						_fromCacheData.push(currentEntry);
-					}
-					else
-					{
-						break;
-					}
-				}
-	
-				if (_fromCacheData.length < pageSize)
-					query.queryOptions = new QueryOptions(pageSize - _fromCacheData.length, offset + _fromCacheData.length);
-	
-			}
-			else
-			{
-				query.queryOptions = new QueryOptions(pageSize, offset);
-			}
-	
-			(Backendless.PersistenceService.of(_entityClass) as DataStore).findByCriteria(query).addResponder(responder);
+			return token;
 		}
 	
-		public function bindSource(source:Object):void
+		public function bindSource( source:Object ):void
 		{
-	
 			var events:Array = [];
+			_currentPage.removeAll();
 	
 			if (source is Array) // ? always array
 			{
-				var cacheStartIndex:int = _fromCacheData.length + _tempOffset;
-				for each(var item:Object in source as Array)
+				for each( var item:Object in source as Array )
 				{
-					addItem(ObjectsBuilder.build(_entityClass, item));
-	
-					if (_cacheSize > 0)
-					{
-						_cachedData[++cacheStartIndex] = item;
-					}
+					var entity:Object = ObjectsBuilder.build( _entityClass, item );
+					_currentPage.addItem( entity );
+   			        addItem( entity );
 				}
 			}
 	
@@ -181,9 +135,7 @@ package com.backendless.data
 			events.push(new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, true, false, CollectionEventKind.ADD));
 	
 			for each(var event:Event in events)
-			{
 				dispatchEvent(event);
-			}
 		}
 	
 		[Bindable(event="loaded")]
@@ -216,21 +168,5 @@ package com.backendless.data
 		{
 			_pageSize = value;
 		}
-	
-		public function get loadedPage():IList
-		{
-			return _loadedPage;
-		}
-	
-		public function get cacheSize():int
-		{
-			return _cacheSize;
-		}
-	
-		public function set cacheSize(value:int):void
-		{
-			_cacheSize = (value < 0) ? 0 : value;
-		}
-	
 	}
 }

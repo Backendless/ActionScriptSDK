@@ -21,15 +21,15 @@ package com.backendless.service
 	import com.backendless.BackendlessUser;
 	import com.backendless.core.backendless;
 	import com.backendless.data.BackendlessCollection;
+	import com.backendless.data.store.Utils;
 	import com.backendless.helpers.ClassHelper;
 	import com.backendless.helpers.ObjectsBuilder;
 	import com.backendless.property.UserProperty;
 	import com.backendless.rpc.BackendlessClient;
 	import com.backendless.validators.ArgumentValidator;
-
-    import mx.collections.ArrayCollection;
-
-    import mx.rpc.AsyncToken;
+	
+	import mx.collections.ArrayCollection;
+	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
@@ -70,7 +70,7 @@ package com.backendless.service
 					function (event:ResultEvent):void
 					{
 						if (responder) responder.result(
-							ResultEvent.createEvent(event.result)	
+							ResultEvent.createEvent( new ArrayCollection( event.result as Array ) )	
 						);
  						result.bindSource(event.result);
 					},
@@ -110,6 +110,7 @@ package com.backendless.service
 						_currentUser = ObjectsBuilder.buildUser(event.result);
 						_currentUser.password = password;
 						Backendless.backendless::setUserToken(_currentUser.getProperty(Backendless.LOGGED_IN_KEY));
+						_currentUser.removeProperty( Backendless.LOGGED_IN_KEY );
 
                         if( responder )
                             responder.result( ResultEvent.createEvent( _currentUser, token,  event.message ) );
@@ -246,20 +247,21 @@ package com.backendless.service
 		 *
 		 * @throws InvalidArgumentError if candidate is NULL
 		 */
-		public function update(candidate:BackendlessUser, responder:IResponder = null):AsyncToken
+		public function update(user:BackendlessUser, responder:IResponder = null):AsyncToken
 		{
-			ArgumentValidator.notNull(candidate);
-			candidate.validate();
+			ArgumentValidator.notNull(user);
+			user.validate();
+			com.backendless.data.store.Utils.addClassName( user.properties, true );
 	
 			var token:AsyncToken = BackendlessClient.instance.invoke(SERVICE_SOURCE, "update",
-				[Backendless.appId, Backendless.version, candidate.properties]);
+				[Backendless.appId, Backendless.version, user.properties]);
 	
 			token.addResponder(
 				new Responder(
 					function (event:ResultEvent):void
 					{
 						if (responder) responder.result(
-							ResultEvent.createEvent(ObjectsBuilder.updateUser(candidate, event.result), token)
+							ResultEvent.createEvent(ObjectsBuilder.updateUser(user, event.result), token)
 						);
 					},
 					function (event:FaultEvent):void

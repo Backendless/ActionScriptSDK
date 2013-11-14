@@ -22,18 +22,20 @@ package com.backendless.data
 	import flash.events.IEventDispatcher;
 	
 	import mx.rpc.IResponder;
+	import mx.rpc.AsyncToken;
 
 	public interface IDataStore extends IEventDispatcher
 	{
-		function save(candidate:IBackendlessEntity, responder:IResponder = null):void;
-		function saveDynamic(className:String, candidate:Object, responder:IResponder = null):void;
+		function save( candidate:*, responder:IResponder = null ):AsyncToken;
+		function saveDynamic( className:String, candidate:Object, responder:IResponder = null ):AsyncToken;
 		
-		function remove( candidate:IBackendlessEntity, responder:IResponder = null):void;
-		function removeById(candidateId:String, responder:IResponder = null):void;
+		function remove( candidate:*, responder:IResponder = null ):AsyncToken;
+		function removeById( candidateId:String, responder:IResponder = null ):AsyncToken;
 		
-		function find(query:BackendlessDataQuery, responder:IResponder = null):BackendlessCollection;
-		function findById(entityId:String, responder:IResponder):void;
-		function first(responder:IResponder):void;
-		function last(responder:IResponder):void;
+		function find( query:BackendlessDataQuery = null, responder:IResponder = null ):BackendlessCollection;
+		function findById( entityId:String, responder:IResponder = null ):AsyncToken;
+		function first( responder:IResponder = null ):AsyncToken;
+		function last( responder:IResponder = null ):AsyncToken;
+		function loadRelations( dataObject:*, relations:Array = null, responder:IResponder = null ):AsyncToken;
 	}
 }
