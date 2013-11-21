@@ -18,19 +18,21 @@
 package com.backendless
 {
     import com.backendless.core.backendless;
-	import com.backendless.rpc.BackendlessClient;
-	import com.backendless.service._FileService;
-	import com.backendless.service._GeoService;
+    import com.backendless.messaging.Message;
+    import com.backendless.property.AbstractProperty;
+    import com.backendless.property.ObjectProperty;
+    import com.backendless.property.UserProperty;
+    import com.backendless.rpc.BackendlessClient;
+    import com.backendless.service._FileService;
+    import com.backendless.service._GeoService;
     import com.backendless.service._MediaService;
     import com.backendless.service._MessagingService;
-	import com.backendless.service._PersistenceService;
-	import com.backendless.service._UserService;
-	import com.backendless.property.AbstractProperty;
-	import com.backendless.property.UserProperty;
-	import com.backendless.property.ObjectProperty;	
-
-	import mx.utils.StringUtil;
-	import flash.net.registerClassAlias;
+    import com.backendless.service._PersistenceService;
+    import com.backendless.service._UserService;
+    
+    import flash.net.registerClassAlias;
+    
+    import mx.utils.StringUtil;
 
     use namespace backendless;
 
@@ -97,6 +99,7 @@ package com.backendless
 			registerClassAlias( "com.backendless.services.users.property.AbstractProperty", AbstractProperty );
 			registerClassAlias( "com.backendless.services.users.property.UserProperty", UserProperty );
 			registerClassAlias( "com.backendless.services.persistence.ObjectProperty", ObjectProperty );
+			registerClassAlias( "com.backendless.services.messaging.Message", Message );
 			BackendlessClient.instance.backendless::initChannel();
 		}
 	
