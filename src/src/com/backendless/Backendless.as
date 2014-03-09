@@ -29,7 +29,9 @@ package com.backendless
     import com.backendless.service._MessagingService;
     import com.backendless.service._PersistenceService;
     import com.backendless.service._UserService;
-    
+	import com.backendless.geo.GeoCategory;
+	import com.backendless.geo.GeoPoint;
+	
     import flash.net.registerClassAlias;
     
     import mx.utils.StringUtil;
@@ -100,6 +102,9 @@ package com.backendless
 			registerClassAlias( "com.backendless.services.users.property.UserProperty", UserProperty );
 			registerClassAlias( "com.backendless.services.persistence.ObjectProperty", ObjectProperty );
 			registerClassAlias( "com.backendless.services.messaging.Message", Message );
+			registerClassAlias( "com.backendless.geo.model.GeoCategory", GeoCategory );
+			registerClassAlias( "com.backendless.geo.model.GeoPoint", GeoPoint );
+				
 			BackendlessClient.instance.backendless::initChannel();
 		}
 	

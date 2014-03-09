@@ -63,19 +63,15 @@ package com.backendless.service
 		 * optional and helps to unambiguously distinguish the upload result.
 		 * The result event contains a full URL path where the uploaded file is accessible</p>
 		 * 
-		 * <p>If the given file with the provided path is already exists in the server repository, 
-		 * an error will occurr</p>
+		 * <p>If the given file with the provided path already exists in the server repository,
+		 * an error will occur</p>
 		 * 
-		 * <p>If any error has occurred during the uploaded, the FileUploadFaultEvent fault event will be dispatched. 
+		 * <p>If an error occurs during the upload, the FileUploadFaultEvent fault event is dispatched.
 		 * The fault event has an uploadId parameter as well</p>
-		 * 
-		 * The following example demonstrates how to upload a file correctly:
 		 *
 		 * @param file an instance of the FileReference class to upload
 		 * @param path a save path on the server side for the file
 		 * @param uploadId an unique, optional action identifier to unambiguously distinguish the upload result
-		 * 
-		 * @author Cyril Deba
 		 */
 		public function upload(file:FileReference, path:String, uploadId:String = null):void
 		{

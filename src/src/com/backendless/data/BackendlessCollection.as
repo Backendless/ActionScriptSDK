@@ -29,8 +29,6 @@ package com.backendless.data
 	import flash.utils.getDefinitionByName;
 	
 	import mx.collections.ArrayCollection;
-	import mx.collections.ArrayList;
-	import mx.collections.IList;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
 	import mx.rpc.AsyncToken;
@@ -126,6 +124,18 @@ package com.backendless.data
    			        addItem( entity );
 				}
 			}
+			else if( isBackendlessCollection( source ) )
+			{
+				for each( var item1:Object in source.data as Array )
+				{
+					var entity1:Object = ObjectsBuilder.build( _entityClass, item1 );
+					_currentPage.addItem( entity1 );
+					addItem( entity1 );
+				}				
+				
+				this._total = source.totalObjects;
+				this._offset = source.offset;
+			}
 	
 	
 			_loaded = true;
@@ -168,5 +178,27 @@ package com.backendless.data
 		{
 			_pageSize = value;
 		}
+		
+		public function get totalObjects():int
+		{
+			return _total;
+		}
+		
+		public function get offset():int
+		{
+			return _offset;
+		}
+		
+		public function get currentPage():ArrayCollection
+		{
+			return _currentPage;
+		}
+		
+		private function isBackendlessCollection( obj:Object ):Boolean
+		{
+			return obj.hasOwnProperty( "data" ) &&
+				obj.hasOwnProperty( "offset" ) &&
+				obj.hasOwnProperty( "totalObjects" );
+		}		
 	}
 }

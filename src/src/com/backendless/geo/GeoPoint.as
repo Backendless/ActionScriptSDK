@@ -7,6 +7,7 @@ package com.backendless.geo
 		private var _objectId:String;
 		private var _categories:Array;                                                                                                                 
 		private var _metadata:Object = {};
+		private var _distance:Number;
 
 		public function get objectId():String
 		{
@@ -37,19 +38,33 @@ package com.backendless.geo
 		{
 			_metadata = value;
 		}
+		
+		public function get distance():Number
+		{
+			return _distance;
+		}
+		
+		public function set distance( value:Number ):void
+		{
+			this._distance = value;
+		}
 
-
-		public function addCategory(category:GeoCategory):void
+		public function addCategory( categoryName:String ):void
 		{
 			if(_categories == null) {
 				_categories = [];
 			}
-			_categories.push(category.name);
+			_categories.push(categoryName);
 		}
 		
 		public function addMetadata(value:Metadata):void
 		{
 			_metadata[value.key] = value.value;
+		}
+		
+		public function set ___class( value:String ):void
+		{
+			
 		}
 	}
 }

@@ -7,7 +7,7 @@ package com.backendless.geo
 		
 		private var _objectId:String;                                                                                                                               
 		private var _name:String;                                                                                                                             
-		private var _geopoints:Array; 
+		private var _size:int; 
 
 		public function get objectId():String
 		{
@@ -29,23 +29,9 @@ package com.backendless.geo
 			_name = value;
 		}
 
-		public function get geopoints():Array
+		public function get size():int
 		{
-			return _geopoints;
-		}
-
-		public function set geopoints(value:Array):void
-		{
-			_geopoints = value;
-		}
-		
-		public function addPoint(point:GeoPoint):void
-		{
-			if(_geopoints == null) {
-				_geopoints = [];
-			}
-			
-			_geopoints.push(point);
+			return _size;
 		}
 	}
 }
