@@ -55,8 +55,9 @@ package com.backendless.data
 	    private var _currentPage:ArrayCollection;
 		private var _tempOffset:int;
 	
-		public function BackendlessCollection( _entityName:String )
+		public function BackendlessCollection( _entityName:String = null )
 		{
+          if( _entityName != null )
 			try
 			{
 				_entityClass = getDefinitionByName( _entityName ) as Class;
@@ -69,6 +70,21 @@ package com.backendless.data
 			_currentPage = new ArrayCollection();
 			_loaded = source && source.length > 0;
 		}
+
+        public function setEntityClass( clazz:Class ):void
+        {
+          this._entityClass = clazz;
+        }
+
+        public override function addItem(item:Object):void
+        {
+          _currentPage.addItem( item );
+        }
+
+        public override function removeItem(item:Object):Boolean
+        {
+          return _currentPage.removeItem( item );
+        }
 	
 		public function getNextPage( responder:IResponder = null ):AsyncToken
 		{

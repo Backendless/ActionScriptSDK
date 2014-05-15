@@ -108,7 +108,7 @@ package com.backendless.service
 					function (event:ResultEvent):void
 					{
 						_currentUser = ObjectsBuilder.buildUser(event.result);
-						_currentUser.password = password;
+						//_currentUser.password = password;
 						Backendless.backendless::setUserToken(_currentUser.getProperty(Backendless.LOGGED_IN_KEY));
 						_currentUser.removeProperty( Backendless.LOGGED_IN_KEY );
 
@@ -169,8 +169,8 @@ package com.backendless.service
 			ArgumentValidator.notNull(candidate, "user cant be NULL");
 			ArgumentValidator.notNull(candidate.getProperty("password"), "user's password cannot be NULL");
 			ArgumentValidator.notEmpty(candidate.getProperty("password"), "user's password cannot be empty");
-			ArgumentValidator.notNull(candidate.getProperty("email"), "user's email cannot be NULL");
-			ArgumentValidator.notEmpty(candidate.getProperty("email"), "user's email cannot be empty");
+			//ArgumentValidator.notNull(candidate.getProperty("email"), "user's email cannot be NULL");
+			//ArgumentValidator.notEmpty(candidate.getProperty("email"), "user's email cannot be empty");
 	
 			var token:AsyncToken = BackendlessClient.instance.invoke(
 				SERVICE_SOURCE,
@@ -252,6 +252,9 @@ package com.backendless.service
 			ArgumentValidator.notNull(user);
 			user.validate();
 			com.backendless.data.store.Utils.addClassName( user.properties, true );
+
+            if( user.password == null )
+              delete user.properties[ BackendlessUser.PASSWORD ];
 	
 			var token:AsyncToken = BackendlessClient.instance.invoke(SERVICE_SOURCE, "update",
 				[Backendless.appId, Backendless.version, user.properties]);

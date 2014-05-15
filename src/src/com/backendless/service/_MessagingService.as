@@ -35,7 +35,7 @@ package com.backendless.service
 	import flash.utils.Timer;
 
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
+	//import mx.controls.Alert;
 	import mx.core.FlexGlobals;
 	import mx.rpc.AsyncToken;
 import mx.rpc.Fault;
@@ -82,8 +82,8 @@ import mx.rpc.IResponder;
 			// check using AIR
 			if (ClassHelper.isAIR() == false)
 			{
-				Alert.show("Device registration is available only on mobile devices in applications compiled with the Adobe AIR SDK",
-					"Warning", Alert.OK, FlexGlobals.topLevelApplication as Sprite);
+			//	Alert.show("Device registration is available only on mobile devices in applications compiled with the Adobe AIR SDK",
+			//		"Warning", Alert.OK, FlexGlobals.topLevelApplication as Sprite);
 				return null;
 			}
 

@@ -19,7 +19,8 @@ package com.backendless.rpc
 {
 	import com.backendless.Backendless;
 	import com.backendless.core.backendless;
-	import com.backendless.messaging.BackendlessChannel;
+  import com.backendless.data.store.Utils;
+  import com.backendless.messaging.BackendlessChannel;
 	
 	import flash.events.EventDispatcher;
 	
@@ -49,6 +50,10 @@ package com.backendless.rpc
 			remoteObject.source = source;
 			
 			var operation:AbstractOperation = remoteObject.getOperation(methodName);
+
+            for( var prop:* in args )
+              args[ prop ] = Utils.prepareArgForSend( args[ prop ] );
+
 			operation.arguments = args;
 			
 			var token:AsyncToken = operation.send();

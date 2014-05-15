@@ -33,8 +33,10 @@ package com.backendless
 	import com.backendless.geo.GeoPoint;
 	
     import flash.net.registerClassAlias;
-    
-    import mx.utils.StringUtil;
+
+  import mx.utils.RpcClassAliasInitializer;
+
+  import mx.utils.StringUtil;
 
     use namespace backendless;
 
@@ -97,7 +99,9 @@ package com.backendless
 			_headers[APPLICATION_TYPE_HEADER] = APPLICATION_TYPE;
 			_headers[APPLICATION_ID_HEADER] = _appId;
 			_headers[SECRET_KEY_HEADER] = _secretKey;
-			
+
+            RpcClassAliasInitializer.registerClassAliases();
+
 			registerClassAlias( "com.backendless.services.users.property.AbstractProperty", AbstractProperty );
 			registerClassAlias( "com.backendless.services.users.property.UserProperty", UserProperty );
 			registerClassAlias( "com.backendless.services.persistence.ObjectProperty", ObjectProperty );
