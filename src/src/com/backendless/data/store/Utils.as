@@ -27,7 +27,7 @@ package com.backendless.data.store
         else
           return null;
       }
-      else if( obj instanceof BackendlessUser )
+      else if( obj is BackendlessUser )
       {
         var userProps:Object = (obj as BackendlessUser).properties;
 
@@ -38,7 +38,7 @@ package com.backendless.data.store
       }
       else if( !ObjectUtil.isSimple( obj ) )
       {
-        var targetObject = {};
+        var targetObject:Object = {};
         var objInfo:Object = ObjectUtil.getClassInfo( obj );
 
         for each( var item:QName in objInfo.properties )

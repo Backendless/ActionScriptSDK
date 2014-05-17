@@ -137,7 +137,7 @@ package com.backendless.data
 				{
 					var entity:Object = ObjectsBuilder.build( _entityClass, item );
 					_currentPage.addItem( entity );
-   			        addItem( entity );
+   			        //addItem( entity );
 				}
 			}
 			else if( isBackendlessCollection( source ) )
@@ -146,7 +146,7 @@ package com.backendless.data
 				{
 					var entity1:Object = ObjectsBuilder.build( _entityClass, item1 );
 					_currentPage.addItem( entity1 );
-					addItem( entity1 );
+					//addItem( entity1 );
 				}				
 				
 				this._total = source.totalObjects;
