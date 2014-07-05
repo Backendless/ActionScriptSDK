@@ -42,10 +42,7 @@ package com.backendless
 
 	public class Backendless
 	{
-		//public static const SITE_URL:String = "http://localhost:9000/";
-		//public static var SITE_URL:String = "http://tc.themidnightcoders.com:9090/";
       public static var SITE_URL:String = "https://api.backendless.com/";
-		//public static const SITE_URL:String = "http://tc.themidnightcoders.com:9000/";
 
 		public static function get AMF_ENDPOINT():String
 		{
@@ -77,7 +74,7 @@ package com.backendless
 		private static const _messagingService:_MessagingService = new _MessagingService();
 		private static const _fileService:_FileService = new _FileService();
         private static const _mediaService:_MediaService = new _MediaService();
-	
+
 		/**
 		 * Initializes the application instance with its all required dependencies
 		 *
@@ -160,6 +157,11 @@ package com.backendless
         public static function get MediaService():_MediaService
         {
             return _mediaService;
+        }
+
+        public static function get Events():com.backendless.Events
+        {
+           return com.backendless.Events.getInstance();
         }
 	
 		backendless static function setUserToken(userToken:String):void

@@ -82,8 +82,23 @@ package com.backendless.data.store
 			
 			return result;
 		}
+
+      public function findById( entityId:String, responder:IResponder = null ):AsyncToken
+      {
+        return internalFindById( entityId, [], 0, responder );
+      }
+
+      public function findByIdWithRelations( entityId:String, relations:Array, responder:IResponder = null ):AsyncToken
+      {
+        return internalFindById( entityId, relations, 0, responder );
+      }
+
+      public function findByIdWithDepth( entityId:String, relationsDepth:int, responder:IResponder = null ):AsyncToken
+      {
+        return internalFindById( entityId, [], relationsDepth, responder );
+      }
 		
-		public function findById( entityId:String, responder:IResponder = null ):AsyncToken
+		private function internalFindById( entityId:String, relations:Array, relationsDepth:int, responder:IResponder = null ):AsyncToken
 		{
 			ArgumentValidator.notEmpty(entityId);
 			ArgumentValidator.notNull(entityId);
@@ -112,38 +127,68 @@ package com.backendless.data.store
 			return token;
 		}
 		
-		public function first( responder:IResponder = null ):AsyncToken
-		{
-			var token:AsyncToken = BackendlessClient.instance.invoke(
-				_PersistenceService.SERVICE_SOURCE, 
-				"first", 
-				[Backendless.appId, Backendless.version, candidateClassName]
-			);
-			
-			if( responder != null )
-				token.addResponder(
-					new Responder(
-						function (event:ResultEvent):void
-						{
-							var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.build( candidateClass, event.result ), token );
-							responder.result( evt );
-						},
-						function (event:FaultEvent):void
-						{
-							onFault( event, responder );
-						}
-					)
-				);
-			
-			return token;
-		}
-		
-		public function last( responder:IResponder = null ):AsyncToken
+      public function first( responder:IResponder = null ):AsyncToken
+      {
+        return internalFirst( [], 0, responder );
+      }
+
+      public function firstWithRelations( relations:Array, responder:IResponder = null ):AsyncToken
+      {
+        return internalFirst( relations, 0, responder );
+      }
+
+      public function firstWithDepth( relationsDepth:int, responder:IResponder = null ):AsyncToken
+      {
+        return internalFirst( [], relationsDepth, responder );
+      }
+
+      private function internalFirst( relations:Array, relationsDepth:int, responder:IResponder = null ):AsyncToken
+      {
+          var token:AsyncToken = BackendlessClient.instance.invoke(
+              _PersistenceService.SERVICE_SOURCE,
+              "first",
+              [Backendless.appId, Backendless.version, candidateClassName, relations, relationsDepth ]
+          );
+
+          if( responder != null )
+              token.addResponder(
+                  new Responder(
+                      function (event:ResultEvent):void
+                      {
+                          var evt:ResultEvent = ResultEvent.createEvent( ObjectsBuilder.build( candidateClass, event.result ), token );
+                          responder.result( evt );
+                      },
+                      function (event:FaultEvent):void
+                      {
+                          onFault( event, responder );
+                      }
+                  )
+              );
+
+          return token;
+      }
+
+      public function last( responder:IResponder = null ):AsyncToken
+      {
+        return internalLast( [], 0, responder );
+      }
+
+      public function lastWithRelations( relations:Array, responder:IResponder = null ):AsyncToken
+      {
+        return internalLast( relations, 0, responder );
+      }
+
+      public function lastWithDepth( relationsDepth:int, responder:IResponder = null ):AsyncToken
+      {
+        return internalLast( [], relationsDepth, responder );
+      }
+
+		private function internalLast( relations:Array, relationsDepth:int, responder:IResponder = null ):AsyncToken
 		{
 			var token:AsyncToken = BackendlessClient.instance.invoke(
 				_PersistenceService.SERVICE_SOURCE, 
 				"last", 
-				[Backendless.appId, Backendless.version, candidateClassName] 
+				[Backendless.appId, Backendless.version, candidateClassName, relations, relationsDepth]
 			);
 			
 			if( responder != null )

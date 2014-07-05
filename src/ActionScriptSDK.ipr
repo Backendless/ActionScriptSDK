@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
     <buildFile url="file://$PROJECT_DIR$/../package-sdk/build.xml">
-      <additionalClassPath />
-      <antReference projectDefault="true" />
       <customJdkName value="1.6_23" />
-      <maximumHeapSize value="128" />
-      <maximumStackSize value="2" />
-      <properties />
     </buildFile>
   </component>
   <component name="BuildJarProjectSettings">
@@ -36,11 +30,13 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="false" useClasspath="true" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+    </annotationProcessing>
   </component>
-  <component name="CopyrightManager" default="">
-    <module2copyright />
-  </component>
+  <component name="CopyrightManager" default="" />
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
@@ -188,6 +184,16 @@
       </item>
     </group>
   </component>
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value>
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
+      </value>
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state />
@@ -199,6 +205,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Backendless-sdk-actionscript.iml" filepath="$PROJECT_DIR$/Backendless-sdk-actionscript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test/test.iml" filepath="$PROJECT_DIR$/../test/test.iml" />
     </modules>
   </component>
   <component name="ProjectResources">
@@ -215,7 +222,6 @@
     </option>
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
   </component>
   <component name="XPathView.XPathProjectComponent">

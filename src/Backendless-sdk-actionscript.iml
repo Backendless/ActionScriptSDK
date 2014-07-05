@@ -2,14 +2,23 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="BackendlessSDK">
     <configurations>
-      <configuration name="BackendlessSDK" target-platform="Mobile" output-type="Library" output-file="backendless.swc" output-folder="$MODULE_DIR$/../lib">
+      <configuration name="BackendlessSDK" target-platform="Desktop" pure-as="true" output-type="Library" output-file="backendless.swc" output-folder="$MODULE_DIR$/../lib">
         <dependencies>
           <entries>
             <entry library-id="d5dcfa78-1fcb-449f-8bd5-1c47d72865e6">
               <dependency linkage="External" />
             </entry>
+            <entry library-id="92707c60-16fe-4818-956e-8b187f10aaca">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="0cc460df-f584-46b4-96b9-3f033aeb5258">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="4640a791-3377-4e3d-8c4f-923234378f62">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
-          <sdk name="4.6.0" />
+          <sdk name="flex4.12" />
         </dependencies>
         <compiler-options>
           <map>
@@ -30,13 +39,43 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="flex4.12" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library type="flex">
         <properties id="d5dcfa78-1fcb-449f-8bd5-1c47d72865e6" />
         <CLASSES>
           <root url="jar:///Applications/Adobe Flash Builder 4.7/sdks/4.6.0/frameworks/libs/mx/mx.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="92707c60-16fe-4818-956e-8b187f10aaca" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../Flex_AIR_SDKs/flex4.12/frameworks/libs/rpc.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="0cc460df-f584-46b4-96b9-3f033aeb5258" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../Flex_AIR_SDKs/flex4.12/frameworks/libs/framework.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="4640a791-3377-4e3d-8c4f-923234378f62" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../Flex_AIR_SDKs/flex4.12/frameworks/libs/spark.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
