@@ -205,6 +205,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Backendless-sdk-actionscript.iml" filepath="$PROJECT_DIR$/Backendless-sdk-actionscript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../backendless/projects/Uploader/Uploader.iml" filepath="$PROJECT_DIR$/../../../backendless/projects/Uploader/Uploader.iml" />
       <module fileurl="file://$PROJECT_DIR$/../test/test.iml" filepath="$PROJECT_DIR$/../test/test.iml" />
     </modules>
   </component>

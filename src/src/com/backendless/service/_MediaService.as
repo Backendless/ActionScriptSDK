@@ -34,9 +34,9 @@ package com.backendless.service
 	//import flash.net.dns.AAAARecord;
 	public class _MediaService extends BackendlessService
 	{
-        public static var BACKENDLESS_MEDIA_STREAMING_URL:String = "rtmp://10.0.1.9/mediaApp/";
+        //public static var BACKENDLESS_MEDIA_STREAMING_URL:String = "rtmp://10.0.1.9/mediaApp/";
 
-        //public static const BACKENDLESS_MEDIA_STREAMING_URL:String = "rtmp://wowza.backendless.com/mediaApp/";
+        public static const BACKENDLESS_MEDIA_STREAMING_URL:String = "rtmp://wowza.backendless.com/mediaApp/";
 
 
 		private static const SERVICE_SOURCE:String = "com.backendless.services.media.MediaService";

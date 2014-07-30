@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3650a740-92c8-450f-b4b1-08b08d2c8305" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/backendless/Events.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../examples/shared-lib/libs/backendless.swc" afterPath="$PROJECT_DIR$/../examples/shared-lib/libs/backendless.swc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../examples/user-service/user-service-plain/libs/backendless.swc" afterPath="$PROJECT_DIR$/../examples/user-service/user-service-plain/libs/backendless.swc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ActionScriptSDK.ipr" afterPath="$PROJECT_DIR$/ActionScriptSDK.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ActionScriptSDK.iws" afterPath="$PROJECT_DIR$/ActionScriptSDK.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Backendless-sdk-actionscript.iml" afterPath="$PROJECT_DIR$/Backendless-sdk-actionscript.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/Backendless.as" afterPath="$PROJECT_DIR$/src/com/backendless/Backendless.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../examples/BackendlessExamples.ipr" afterPath="$PROJECT_DIR$/../examples/BackendlessExamples.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../examples/BackendlessExamples.iws" afterPath="$PROJECT_DIR$/../examples/BackendlessExamples.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as" afterPath="$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/data/IDataStore.as" afterPath="$PROJECT_DIR$/src/com/backendless/data/IDataStore.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/QueryOptions.as" afterPath="$PROJECT_DIR$/src/com/backendless/QueryOptions.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/data/store/Utils.as" afterPath="$PROJECT_DIR$/src/com/backendless/data/store/Utils.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/service/_FileService.as" afterPath="$PROJECT_DIR$/src/com/backendless/service/_FileService.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/backendless/service/_MediaService.as" afterPath="$PROJECT_DIR$/src/com/backendless/service/_MediaService.as" />
     </list>
     <ignored path="ActionScriptSDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,50 +69,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DataStore.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4312">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="2" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Backendless.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/backendless/Backendless.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2296">
-              <caret line="163" column="55" selection-start-line="163" selection-start-column="55" selection-end-line="163" selection-end-column="55" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Events.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/backendless/Events.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1036">
-              <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utils.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/backendless/data/store/Utils.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
-              <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="2086">
+              <caret line="108" column="98" selection-start-line="108" selection-start-column="98" selection-end-line="108" selection-end-column="98" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,28 +82,60 @@
       <file leaf-file-name="Test.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../test/src/Test.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="3640">
-              <caret line="48" column="189" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="4564">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="81" selection-end-column="87" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/releaseh/index.html">
+      <file leaf-file-name="_FileService.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0434783" vertical-offset="0" max-vertical-offset="1162">
-              <caret line="5" column="158" selection-start-line="10" selection-start-column="0" selection-end-line="75" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.2826087" vertical-offset="1034" max-vertical-offset="2576">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="release.css" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Downloads/releaseh/release.css">
+      <file leaf-file-name="FileServiceActionResult.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/backendless/upload/FileServiceActionResult.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68696886" vertical-offset="4780" max-vertical-offset="7935">
-              <caret line="351" column="33" selection-start-line="351" selection-start-column="33" selection-end-line="351" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Foo.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../backendless/projects/Uploader/src/Foo.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="614" max-vertical-offset="1484">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding>
+                <element signature="e#11#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PictureUpload.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/PictureUpload/src/PictureUpload.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="994">
+              <caret line="31" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="80" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PictureUpload.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../test/src/PictureUpload.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1218">
+              <caret line="13" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -154,8 +144,8 @@
       <file leaf-file-name="release.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/releaseh/release.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.307693" vertical-offset="3044" max-vertical-offset="4680">
-              <caret line="226" column="37" selection-start-line="226" selection-start-column="34" selection-end-line="226" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1106" max-vertical-offset="4564">
+              <caret line="79" column="198" selection-start-line="79" selection-start-column="198" selection-end-line="79" selection-end-column="198" />
               <folding />
             </state>
           </provider>
@@ -164,8 +154,8 @@
       <file leaf-file-name="releasehistory.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/releaseh/releasehistory.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2019" max-vertical-offset="3038">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="31094" max-vertical-offset="101598">
+              <caret line="2221" column="111" selection-start-line="2221" selection-start-column="104" selection-end-line="2221" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -174,8 +164,8 @@
       <file leaf-file-name="AppInit.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../test/src/com/ordermanagement/AppInit.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="448">
-              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="224" max-vertical-offset="476">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -199,9 +189,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/backendless/media/BackendlessVideoSource.as" />
         <option value="$PROJECT_DIR$/../package-sdk/build.xml" />
-        <option value="$PROJECT_DIR$/src/com/backendless/service/_FileService.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/service/_MessagingService.as" />
-        <option value="$PROJECT_DIR$/src/com/backendless/service/_MediaService.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/rpc/BackendlessClient.as" />
         <option value="$PROJECT_DIR$/../test/src/com/ordermanagement/Manufacturer.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/BackendlessUser.as" />
@@ -216,12 +204,19 @@
         <option value="$PROJECT_DIR$/src/com/backendless/data/IDataStore.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/data/store/DataStore.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/data/store/Utils.as" />
-        <option value="$PROJECT_DIR$/src/com/backendless/Backendless.as" />
-        <option value="$PROJECT_DIR$/../test/src/com/ordermanagement/AppInit.as" />
         <option value="$PROJECT_DIR$/src/com/backendless/Events.as" />
-        <option value="$PROJECT_DIR$/../test/src/Test.as" />
-        <option value="$USER_HOME$/Downloads/releaseh/release.js" />
+        <option value="$PROJECT_DIR$/src/com/backendless/service/_MediaService.as" />
         <option value="$USER_HOME$/Downloads/releaseh/release.css" />
+        <option value="$USER_HOME$/Downloads/releaseh/index.html" />
+        <option value="$USER_HOME$/Downloads/releaseh/release.js" />
+        <option value="$USER_HOME$/Downloads/releaseh/releasehistory.xml" />
+        <option value="$PROJECT_DIR$/../test/src/com/ordermanagement/AppInit.as" />
+        <option value="$PROJECT_DIR$/../test/src/Test.as" />
+        <option value="$PROJECT_DIR$/../../../backendless_svn/src/client/sample_apps/air/FileServiceDemo/FileService.iml" />
+        <option value="$PROJECT_DIR$/../test/src/PictureUpload.as" />
+        <option value="$PROJECT_DIR$/../../../backendless/projects/Uploader/src/Foo.as" />
+        <option value="$PROJECT_DIR$/src/com/backendless/Backendless.as" />
+        <option value="$PROJECT_DIR$/src/com/backendless/service/_FileService.as" />
       </list>
     </option>
   </component>
@@ -229,10 +224,10 @@
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="153" />
-    <option name="y" value="44" />
-    <option name="width" value="1881" />
-    <option name="height" value="878" />
+    <option name="x" value="266" />
+    <option name="y" value="141" />
+    <option name="width" value="1626" />
+    <option name="height" value="1178" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -260,6 +255,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -274,22 +279,36 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="ActionScriptSDK" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionScriptSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionScriptSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -380,7 +399,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
+              <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,33 +421,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ActionScriptSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backendless" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
+              <option name="myItemId" value="events" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,18 +463,56 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ActionScriptSDK.ipr" />
+    <property name="last_opened_file_path" value="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/bin" />
     <property name="recentsLimit" value="5" />
     <property name="LayoutCode.rearrangeEntriesECMA Script Level 4" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
-      <recent name="com.backendless" />
       <recent name="" />
+      <recent name="com.backendless" />
       <recent name="com.ordermanagement" />
     </key>
   </component>
-  <component name="RunManager" selected="Flash App.test">
+  <component name="RunManager" selected="Flash App.Uploader">
+    <configuration default="false" name="PictureUpload" type="FlashRunConfigurationType" factoryName="Flash App" temporary="true" nameIsGenerated="true">
+      <option name="BCName" value="test" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="test" />
+      <option name="overriddenMainClass" value="PictureUpload" />
+      <option name="overriddenOutputFileName" value="PictureUpload.swf" />
+      <option name="overrideMainClass" value="true" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <RunnerSettings RunnerId="FlexRunner" />
+      <ConfigurationWrapper RunnerId="FlexRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -499,6 +534,14 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
     <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="scalaCoverage" />
@@ -512,14 +555,6 @@
       <setting name="testName" value="" />
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -588,41 +623,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <extension name="scalaCoverage" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
       <option name="BCName" value="" />
       <option name="IOSSimulatorSdkPath" value="" />
@@ -656,6 +656,41 @@
       <option name="screenWidth" value="0" />
       <option name="url" value="http://" />
       <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="test" type="FlashRunConfigurationType" factoryName="Flash App">
@@ -697,9 +732,55 @@
       <ConfigurationWrapper RunnerId="FlexRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <configuration default="false" name="Uploader" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="Uploader" />
+      <option name="IOSSimulatorSdkPath" value="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="IOS" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="iPhoneRetina" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="Uploader" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <RunnerSettings RunnerId="FlexDebugRunner" />
+      <RunnerSettings RunnerId="FlexRunner" />
+      <ConfigurationWrapper RunnerId="FlexDebugRunner" />
+      <ConfigurationWrapper RunnerId="FlexRunner" />
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Flash App.test" />
+      <item index="1" class="java.lang.String" itemvalue="Flash App.Uploader" />
+      <item index="2" class="java.lang.String" itemvalue="Flash App.PictureUpload" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Flash App.PictureUpload" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -730,7 +811,12 @@
       <workItem from="1403109906759" duration="525000" />
       <workItem from="1403295753659" duration="201000" />
       <workItem from="1403461698818" duration="23000" />
-      <workItem from="1404372348397" duration="5695000" />
+      <workItem from="1404372348397" duration="26392000" />
+      <workItem from="1406572196820" duration="610000" />
+      <workItem from="1406577246305" duration="137000" />
+      <workItem from="1406578111472" duration="202000" />
+      <workItem from="1406578475620" duration="2883000" />
+      <workItem from="1406653862279" duration="5500000" />
     </task>
     <task id="LOCAL-00001" summary="geo service and file service improvements.">
       <created>1394386803665</created>
@@ -744,14 +830,18 @@
       <created>1400368111682</created>
       <updated>1400368111682</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added support for relations depth and custom events">
+      <created>1404570050309</created>
+      <updated>1404570050309</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57017000" />
+    <option name="totallyTimeSpent" value="87046000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="153" y="44" width="1881" height="878" extended-state="6" />
+    <frame x="266" y="141" width="1626" height="1178" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -759,7 +849,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24955009" sideWeight="0.44517833" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3783019" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43113208" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30776796" sideWeight="0.50036633" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -769,14 +859,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22566612" sideWeight="0.445977" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34243697" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2020202" sideWeight="0.445977" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17924528" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -798,7 +888,8 @@
     <MESSAGE value="geo service and file service improvements." />
     <MESSAGE value="fixes in user object serialization" />
     <MESSAGE value="fixed bug with adding an item to collection twice (in responses)&#10;fixed warnings&#10;added removePoint method (in geo service)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with adding an item to collection twice (in responses)&#10;fixed warnings&#10;added removePoint method (in geo service)" />
+    <MESSAGE value="added support for relations depth and custom events" />
+    <option name="LAST_COMMIT_MESSAGE" value="added support for relations depth and custom events" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -806,36 +897,61 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>269</line>
+          <line>311</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>144</line>
+          <line>186</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>126</line>
+          <line>168</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>180</line>
+          <line>222</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>184</line>
+          <line>226</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="flex">
           <url>file://$PROJECT_DIR$/../test/src/Test.as</url>
-          <line>59</line>
+          <line>101</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/../../../backendless/projects/Uploader/src/Foo.as</url>
+          <line>57</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as</url>
+          <line>86</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as</url>
+          <line>89</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as</url>
+          <line>112</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="flex">
+          <url>file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as</url>
+          <line>120</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="25" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -849,55 +965,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/upload/events/FileUploadFaultEvent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18876405" vertical-offset="0" max-vertical-offset="0">
-          <caret line="12" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/helpers/DeviceHelper.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="434" max-vertical-offset="798">
-          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/media/BackendlessVideoSource.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="2870">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package-sdk/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="322" max-vertical-offset="406">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/media/StreamSettings.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="2562">
-          <caret line="120" column="76" selection-start-line="120" selection-start-column="76" selection-end-line="120" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/upload/FileServiceActionResult.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
-          <caret line="2" column="77" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/backendless/messaging/BackendlessChannel.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
@@ -1077,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="971" max-vertical-offset="2576">
           <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="182">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1100,7 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,7 +1172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1344">
           <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1116,15 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="602">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="56" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_MediaService.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2828">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1132,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="728">
           <caret line="53" column="66" selection-start-line="44" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1140,7 +1193,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1610" max-vertical-offset="5488">
           <caret line="97" column="127" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,9 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4312">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="2" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1158,26 +1207,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
           <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/backendless/Backendless.as">
+    <entry file="file://$USER_HOME$/Downloads/backendless-js-sdk 2/libs/backendless.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2296">
-          <caret line="163" column="55" selection-start-line="163" selection-start-column="55" selection-end-line="163" selection-end-column="55" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="31261" max-vertical-offset="33306">
+          <caret line="2248" column="181" selection-start-line="2258" selection-start-column="21" selection-end-line="2258" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../test/src/com/ordermanagement/AppInit.as">
+    <entry file="file://$USER_HOME$/Downloads/releaseh/release.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="448">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="7406">
+          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/releaseh/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1162">
+          <caret line="14" column="108" selection-start-line="14" selection-start-column="108" selection-end-line="14" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_MediaService.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2828">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1185,49 +1243,97 @@
     <entry file="file://$PROJECT_DIR$/src/com/backendless/Events.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1036">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../test/src/Test.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="3640">
-          <caret line="48" column="189" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/releaseh/releasehistory.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2019" max-vertical-offset="3038">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/releaseh/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0434783" vertical-offset="0" max-vertical-offset="1162">
-          <caret line="5" column="158" selection-start-line="10" selection-start-column="0" selection-end-line="75" selection-end-column="10" />
+          <caret line="3" column="179" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/releaseh/release.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.307693" vertical-offset="3044" max-vertical-offset="4680">
-          <caret line="226" column="37" selection-start-line="226" selection-start-column="34" selection-end-line="226" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1106" max-vertical-offset="4564">
+          <caret line="79" column="198" selection-start-line="79" selection-start-column="198" selection-end-line="79" selection-end-column="198" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/releaseh/release.css">
+    <entry file="file://$USER_HOME$/Downloads/releaseh/releasehistory.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68696886" vertical-offset="4780" max-vertical-offset="7935">
-          <caret line="351" column="33" selection-start-line="351" selection-start-column="33" selection-end-line="351" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="3738">
+          <caret line="2221" column="111" selection-start-line="2221" selection-start-column="104" selection-end-line="2221" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test/src/com/ordermanagement/AppInit.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="448">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../backendless_svn/src/client/sample_apps/air/FileServiceDemo/FileService.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2198">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test/src/Test.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="4200">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="81" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test/src/PictureUpload.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1218">
+          <caret line="13" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/PictureUpload/src/PictureUpload.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="994">
+          <caret line="31" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="80" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/Backendless.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="2086">
+          <caret line="108" column="98" selection-start-line="108" selection-start-column="98" selection-end-line="108" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/upload/FileServiceActionResult.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../backendless/projects/Uploader/src/Foo.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="564" max-vertical-offset="1484">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#11#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/backendless/service/_FileService.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2826087" vertical-offset="1034" max-vertical-offset="2576">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1285,7 +1391,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>test|test</last-edited>
+          <last-edited>Uploader|Uploader</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -119,6 +119,7 @@ package com.backendless.service
 			_uploading = false;
 			
 			var result:FileServiceActionResult = event.result as FileServiceActionResult;
+
 			if(result.error) {
 				dispatchEvent(new FileUploadFaultEvent(_actionId, result.message));
 			}else{

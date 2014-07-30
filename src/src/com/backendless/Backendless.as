@@ -31,8 +31,9 @@ package com.backendless
     import com.backendless.service._UserService;
 	import com.backendless.geo.GeoCategory;
 	import com.backendless.geo.GeoPoint;
-	
-    import flash.net.registerClassAlias;
+  import com.backendless.upload.FileServiceActionResult;
+
+  import flash.net.registerClassAlias;
 
   import mx.utils.RpcClassAliasInitializer;
 
@@ -105,6 +106,7 @@ package com.backendless
 			registerClassAlias( "com.backendless.services.messaging.Message", Message );
 			registerClassAlias( "com.backendless.geo.model.GeoCategory", GeoCategory );
 			registerClassAlias( "com.backendless.geo.model.GeoPoint", GeoPoint );
+            registerClassAlias( "com.backendless.services.file.FileServiceActionResult", FileServiceActionResult );
 				
 			BackendlessClient.instance.backendless::initChannel();
 		}
