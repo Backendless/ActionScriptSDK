@@ -20,6 +20,8 @@ package com.backendless.data.store
   import com.backendless.BackendlessUser;
   import com.backendless.data.BackendlessCollection;
 
+  import flash.utils.ByteArray;
+
   import flash.utils.getQualifiedClassName;
 
   import mx.utils.ObjectUtil;
@@ -53,7 +55,7 @@ package com.backendless.data.store
 
         return userProps;
       }
-      else if( !ObjectUtil.isSimple( obj ) )
+      else if( !ObjectUtil.isSimple( obj ) && !(obj is ByteArray))
       {
         var targetObject:Object = {};
         var objInfo:Object = ObjectUtil.getClassInfo( obj );

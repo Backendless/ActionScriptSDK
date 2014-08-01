@@ -27,8 +27,10 @@ package com.backendless.service
 	import com.backendless.property.UserProperty;
 	import com.backendless.rpc.BackendlessClient;
 	import com.backendless.validators.ArgumentValidator;
-	
-	import mx.collections.ArrayCollection;
+
+  import flash.net.SharedObject;
+
+  import mx.collections.ArrayCollection;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.Responder;
@@ -93,7 +95,7 @@ package com.backendless.service
 		 *
 		 * @return BackendlessUser - an instance of the BackendlessUser class that represents the authenticated user
 		 */
-		public function login(login:String, password:String, responder:IResponder = null):AsyncToken
+		public function login(login:String, password:String, responder:IResponder = null, stayLoggedIn:Boolean = false):AsyncToken
 		{
 			ArgumentValidator.notNull(login);
 			ArgumentValidator.notNull(password);
@@ -109,8 +111,17 @@ package com.backendless.service
 					{
 						_currentUser = ObjectsBuilder.buildUser(event.result);
 						//_currentUser.password = password;
-						Backendless.backendless::setUserToken(_currentUser.getProperty(Backendless.LOGGED_IN_KEY));
+                        var userToken:String = _currentUser.getProperty( Backendless.LOGGED_IN_KEY );
+						Backendless.backendless::setUserToken( userToken );
 						_currentUser.removeProperty( Backendless.LOGGED_IN_KEY );
+
+                        if( stayLoggedIn )
+                        {
+                          var so:SharedObject = SharedObject.getLocal( "loginInfo" );
+                          so.data.userToken = userToken;
+                          so.data.userId = _currentUser.getProperty( "objectId");
+                          so.flush();
+                        }
 
                         if( responder )
                             responder.result( ResultEvent.createEvent( _currentUser, token,  event.message ) );
@@ -126,6 +137,26 @@ package com.backendless.service
 	
 			return token;
 		}
+
+        public function isValidLogin( responder:IResponder ):void
+        {
+          var so:SharedObject = SharedObject.getLocal( "loginInfo" );
+
+          var asyncToken:AsyncToken;
+
+          if( so.data.userToken != undefined && so.data.userToken != null )
+          {
+            asyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "isValidUserToken", [Backendless.appId, Backendless.version, so.data.userToken] );
+
+            if( responder != null )
+              asyncToken.addResponder( responder );
+          }
+          else if( responder != null )
+          {
+            var evt:ResultEvent = new ResultEvent( ResultEvent.RESULT, false, true, currentUser != null );
+            responder.result( evt );
+          }
+        }
 	
 		/**
 		 * Invalidates the authenticated user
@@ -142,10 +173,23 @@ package com.backendless.service
 					{
 						_currentUser = null;
 						Backendless.backendless::removeUserToken();
+                        var so:SharedObject = SharedObject.getLocal( "loginInfo" );
+                        so.clear();
 					},
 					function (event:FaultEvent):void
 					{
-						onFault(event, responder);
+                        var faultCode:Number = Number( event.fault.faultCode );
+
+                        if( faultCode != 3064 && faultCode != 3091 && faultCode != 3090 && faultCode != 3023 )
+						  onFault(event, responder);
+                        else
+                        {
+                          event.stopPropagation();
+                          token.responders.splice(0);
+
+                          if( responder != null )
+                            responder.result( new ResultEvent( ResultEvent.RESULT ) );
+                        }
 					}
 				)
 			);

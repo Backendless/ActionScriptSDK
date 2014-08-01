@@ -17,21 +17,24 @@
 */
 package com.backendless
 {
-    import com.backendless.core.backendless;
-    import com.backendless.messaging.Message;
-    import com.backendless.property.AbstractProperty;
-    import com.backendless.property.ObjectProperty;
-    import com.backendless.property.UserProperty;
-    import com.backendless.rpc.BackendlessClient;
-    import com.backendless.service._FileService;
-    import com.backendless.service._GeoService;
-    import com.backendless.service._MediaService;
-    import com.backendless.service._MessagingService;
-    import com.backendless.service._PersistenceService;
-    import com.backendless.service._UserService;
-	import com.backendless.geo.GeoCategory;
-	import com.backendless.geo.GeoPoint;
+  import com.backendless.cache.Cache;
+  import com.backendless.core.backendless;
+  import com.backendless.messaging.Message;
+  import com.backendless.property.AbstractProperty;
+  import com.backendless.property.ObjectProperty;
+  import com.backendless.property.UserProperty;
+  import com.backendless.rpc.BackendlessClient;
+  import com.backendless.service._FileService;
+  import com.backendless.service._GeoService;
+  import com.backendless.service._MediaService;
+  import com.backendless.service._MessagingService;
+  import com.backendless.service._PersistenceService;
+  import com.backendless.service._UserService;
+  import com.backendless.geo.GeoCategory;
+  import com.backendless.geo.GeoPoint;
   import com.backendless.upload.FileServiceActionResult;
+
+  import flash.net.SharedObject;
 
   import flash.net.registerClassAlias;
 
@@ -43,11 +46,14 @@ package com.backendless
 
 	public class Backendless
 	{
-      public static var SITE_URL:String = "https://api.backendless.com/";
+      public static var SITE_URL:String = "https://api.backendless.com";
 
 		public static function get AMF_ENDPOINT():String
 		{
-			return StringUtil.substitute(AMF_ENDPOINT_TEMPLATE, SITE_URL, version);
+          if( SITE_URL.charAt( SITE_URL.length - 1 ) != '/' )
+           SITE_URL = SITE_URL + "/";
+
+		  return StringUtil.substitute(AMF_ENDPOINT_TEMPLATE, SITE_URL, version);
 		}
 	
 		public static const APPLICATION_ID_HEADER:String = "application-id";
@@ -109,6 +115,11 @@ package com.backendless
             registerClassAlias( "com.backendless.services.file.FileServiceActionResult", FileServiceActionResult );
 				
 			BackendlessClient.instance.backendless::initChannel();
+
+            var so:SharedObject = SharedObject.getLocal( "loginInfo" );
+
+            if( so.data.userToken != null )
+              setUserToken( so.data.userToken );
 		}
 	
 		public static function get appId():String
@@ -164,6 +175,11 @@ package com.backendless
         public static function get Events():com.backendless.Events
         {
            return com.backendless.Events.getInstance();
+        }
+
+        public static function get Cache():com.backendless.cache.Cache
+        {
+          return com.backendless.cache.Cache.getInstance();
         }
 	
 		backendless static function setUserToken(userToken:String):void
