@@ -86,15 +86,26 @@ package com.backendless.cache
       return asyncToken;
     }
 
-    public function extendLife( key:String, expire:int, responder:IResponder = null ):AsyncToken
+    public function expireIn( key:String, seconds:int, responder:IResponder = null ):AsyncToken
     {
-      var asyncToken:AsyncToken = BackendlessClient.instance.invoke( CACHE_SERVER_ALIAS, "extendLife", [Backendless.appId, Backendless.version, key, expire ] );
+      var asyncToken:AsyncToken = BackendlessClient.instance.invoke( CACHE_SERVER_ALIAS, "expireIn", [Backendless.appId, Backendless.version, key, seconds ] );
 
       if( responder != null )
         asyncToken.addResponder( responder );
 
       return asyncToken;
     }
+
+    public function expireAt( key:String, timestamp:Number, responder:IResponder = null ):AsyncToken
+    {
+      var asyncToken:AsyncToken = BackendlessClient.instance.invoke( CACHE_SERVER_ALIAS, "expireAt", [Backendless.appId, Backendless.version, key, timestamp / 1000 ] );
+
+      if( responder != null )
+        asyncToken.addResponder( responder );
+
+      return asyncToken;
+    }
+
 
     public function remove( key:String, responder:IResponder = null ):AsyncToken
     {
