@@ -30,9 +30,14 @@ package com.backendless.cache
       return Cache.getInstance().contains( key, responder );
     }
 
-    public function extendLife( seconds:int, responder:IResponder = null ):AsyncToken
+    public function expireIn( seconds:int, responder:IResponder = null ):AsyncToken
     {
-      return Cache.getInstance().extendLife( key, seconds, responder );
+      return Cache.getInstance().expireIn( key, seconds, responder );
+    }
+
+    public function expireAt( timestamp:int, responder:IResponder = null ):AsyncToken
+    {
+      return Cache.getInstance().expireAt( key, timestamp, responder );
     }
 
     public function remove( responder:IResponder = null ):AsyncToken

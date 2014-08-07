@@ -14,7 +14,9 @@ package com.backendless.cache
 
     function contains( responder:IResponder = null ) : AsyncToken;
 
-    function extendLife( seconds:int, responder:IResponder = null ) : AsyncToken;
+    function expireIn( seconds:int, responder:IResponder = null ) : AsyncToken;
+
+    function expireAt( timestamp:int, responder:IResponder = null ) : AsyncToken;
 
     function remove( responder:IResponder = null ) : AsyncToken;
   }

@@ -19,6 +19,7 @@ package com.backendless
 {
   import com.backendless.cache.Cache;
   import com.backendless.core.backendless;
+  import com.backendless.counters.Counters;
   import com.backendless.messaging.Message;
   import com.backendless.property.AbstractProperty;
   import com.backendless.property.ObjectProperty;
@@ -180,6 +181,11 @@ package com.backendless
         public static function get Cache():com.backendless.cache.Cache
         {
           return com.backendless.cache.Cache.getInstance();
+        }
+
+        public static function get Counters():com.backendless.counters.Counters
+        {
+          return com.backendless.counters.Counters.getInstance();
         }
 	
 		backendless static function setUserToken(userToken:String):void
