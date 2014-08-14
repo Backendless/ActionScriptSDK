@@ -20,7 +20,8 @@ package com.backendless.service
 	import com.backendless.Backendless;
 	import com.backendless.config.BackendlessConfig;
 	import com.backendless.helpers.ClassHelper;
-	import com.backendless.messaging.DeliveryOptions;
+  import com.backendless.messaging.BodyParts;
+  import com.backendless.messaging.DeliveryOptions;
 	import com.backendless.messaging.DeviceRegistration;
 	import com.backendless.messaging.ISubscriptionResponder;
 	import com.backendless.messaging.PublishOptions;
@@ -29,8 +30,9 @@ package com.backendless.service
 	import com.backendless.messaging.PushNotification;
 	import com.backendless.messaging.PushNotificationEvent;
 	import com.backendless.rpc.BackendlessClient;
+  import com.backendless.validators.ArgumentValidator;
 
-	import flash.display.Sprite;
+  import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 
@@ -50,6 +52,7 @@ import mx.rpc.IResponder;
         public static const ANDROID:String = "ANDROID";
 		private static const MESSAGING_SERVICE_SOURCE:String = "com.backendless.services.messaging.MessagingService";
 		private static const DEVICE_SERVICE_SOURCE:String = "com.backendless.services.messaging.DeviceRegistrationService";
+        private static const EMAIL_MANAGER_SERVER_ALIAS:String = "com.backendless.services.mail.CustomersEmailService";
 
 		public function _MessagingService():void
 		{
@@ -422,5 +425,36 @@ import mx.rpc.IResponder;
 			pollMessages();
 			timer.reset();
 		}
-	}
+
+    public function sendTextEmail( subject:String, messageBody:String, recipients:Array, attachments:Array = null, responder:IResponder = null ):AsyncToken
+    {
+      return sendEmail( subject, new BodyParts( messageBody, null ), recipients, attachments, responder );
+    }
+
+    public function sendHTMLEmail( subject:String, messageBody:String, recipients:Array, attachments:Array = null, responder:IResponder = null ):AsyncToken
+    {
+      return sendEmail( subject, new BodyParts( null, messageBody ), recipients, attachments, responder );
+    }
+
+    public function sendEmail( subject:String, bodyParts:BodyParts, recipients:Array, attachments:Array = null, responder:IResponder = null ):AsyncToken
+    {
+      ArgumentValidator.notNull( subject, "the subject argument cannot be null" );
+      ArgumentValidator.notNull( bodyParts, "missing message body" );
+      ArgumentValidator.notNull( recipients, "the recipients argument cannot be null" );
+      ArgumentValidator.notEmpty( recipients, "the recipients array cannot be empty" );
+
+      if( attachments == null )
+          attachments = [];
+
+     return BackendlessClient.instance.invoke(EMAIL_MANAGER_SERVER_ALIAS, "send",
+                [
+                    Backendless.appId,
+                    Backendless.version,
+                    subject,
+                        bodyParts,
+                        recipients,
+                        attachments
+                ], responder);
+      }
+    }
 }
