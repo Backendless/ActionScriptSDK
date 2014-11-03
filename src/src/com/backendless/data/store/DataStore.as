@@ -68,7 +68,7 @@ package com.backendless.data.store
 					function(event:ResultEvent):void
 					{
 						trace(event.result);
-						result.bindSource(event.result.data);
+						result.bindSource(event.result);
 						
 						if( responder )
 							responder.result( ResultEvent.createEvent( result, token,  event.message ) );
@@ -260,7 +260,7 @@ package com.backendless.data.store
 				relations = [ "*" ];
 			
 			var token:AsyncToken = BackendlessClient.instance.invoke(_PersistenceService.SERVICE_SOURCE, "findById", 
-				[Backendless.appId, Backendless.version, candidateClassName, dataObject[ "objectId" ], relations]);
+				[Backendless.appId, Backendless.version, candidateClassName, dataObject, relations]);
 			
 			if( responder != null )
 				token.addResponder(

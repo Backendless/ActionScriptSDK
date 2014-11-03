@@ -155,8 +155,11 @@ package com.backendless.service
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            result.bindSource( event.result );
-                                           if( responder ) responder.result( event );
-                                         }, function ( event:FaultEvent ):void
+
+                                           if( responder )
+                                             responder.result( ResultEvent.createEvent( result, token,  event.message ) );
+                                         },
+                                         function ( event:FaultEvent ):void
                                          {
                                            onFault( event, responder );
                                          } ) );

@@ -1,33 +1,32 @@
 package com.backendless.geo
 {
-/**
- *
- */
-public class PointBase
-{
-	
-	private var _latitude:Number;                                                                                                                         
+  /**
+   *
+   */
+  public class PointBase
+  {
+    private var _latitude:Number;
 
-	public function get latitude():Number
-	{
-		return _latitude;
-	}
-	
-	public function set latitude(value:Number):void
-	{
-		_latitude = value;
-	}
+    public function get latitude():Number
+    {
+      return _latitude;
+    }
 
-	private var _longitude:Number;
+    public function set latitude( value:Number ):void
+    {
+      _latitude = value;
+    }
 
-	public function get longitude():Number
-	{
-		return _longitude;
-	}
+    private var _longitude:Number;
 
-	public function set longitude(value:Number):void
-	{
-		_longitude = value;
-	}
-}
+    public function get longitude():Number
+    {
+      return _longitude;
+    }
+
+    public function set longitude( value:Number ):void
+    {
+      _longitude = value;
+    }
+  }
 }
