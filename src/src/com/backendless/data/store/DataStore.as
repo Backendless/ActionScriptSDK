@@ -47,7 +47,11 @@ package com.backendless.data.store
 		public function DataStore(candidate:Class)
 		{
 			candidateFullClassName = ClassHelper.getCanonicalClassName(candidate);
-			candidateClassName = ClassHelper.getCanonicalShortClassName(candidate);
+            candidateClassName = Backendless.PersistenceService.getTableNameForClass( candidate );
+
+            if( candidateClassName == null )
+			  candidateClassName = ClassHelper.getCanonicalShortClassName(candidate);
+
 			candidateClass = candidate;
 		}
 		
@@ -83,30 +87,38 @@ package com.backendless.data.store
 			return result;
 		}
 
-      public function findById( entityId:String, responder:IResponder = null ):AsyncToken
+      public function findById( entityId:Object, responder:IResponder = null ):AsyncToken
       {
         return internalFindById( entityId, [], 0, responder );
       }
 
-      public function findByIdWithRelations( entityId:String, relations:Array, responder:IResponder = null ):AsyncToken
+      public function findByIdWithRelations( entityId:Object, relations:Array, responder:IResponder = null ):AsyncToken
       {
         return internalFindById( entityId, relations, 0, responder );
       }
 
-      public function findByIdWithDepth( entityId:String, relationsDepth:int, responder:IResponder = null ):AsyncToken
+      public function findByIdWithDepth( entityId:Object, relationsDepth:int, responder:IResponder = null ):AsyncToken
       {
         return internalFindById( entityId, [], relationsDepth, responder );
       }
 		
-		private function internalFindById( entityId:String, relations:Array, relationsDepth:int, responder:IResponder = null ):AsyncToken
+		private function internalFindById( entityId:Object, relations:Array, relationsDepth:int, responder:IResponder = null ):AsyncToken
 		{
 			ArgumentValidator.notEmpty(entityId);
 			ArgumentValidator.notNull(entityId);
+
+          var args:Array = [Backendless.appId, Backendless.version, candidateClassName, entityId];
+
+          if( !(entityId is String) )
+          {
+            args.push( [] );
+            args.push( 0 );
+          }
 			
 			var token:AsyncToken = BackendlessClient.instance.invoke(
 				_PersistenceService.SERVICE_SOURCE,
 				"findById",
-				[Backendless.appId, Backendless.version, candidateClassName, entityId]
+				args
 			);
 			
 			if( responder != null )

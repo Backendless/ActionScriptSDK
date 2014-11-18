@@ -36,11 +36,11 @@ package com.backendless.data
 
     function find( query:BackendlessDataQuery = null, responder:IResponder = null ):BackendlessCollection;
 
-    function findById( entityId:String, responder:IResponder = null ):AsyncToken;
+    function findById( entityId:Object, responder:IResponder = null ):AsyncToken;
 
-    function findByIdWithRelations( entityId:String, relations:Array, responder:IResponder = null ):AsyncToken;
+    function findByIdWithRelations( entityId:Object, relations:Array, responder:IResponder = null ):AsyncToken;
 
-    function findByIdWithDepth( entityId:String, relationsDepth:int, responder:IResponder = null ):AsyncToken;
+    function findByIdWithDepth( entityId:Object, relationsDepth:int, responder:IResponder = null ):AsyncToken;
 
     function first( responder:IResponder = null ):AsyncToken;
 

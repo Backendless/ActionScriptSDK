@@ -28,6 +28,8 @@ package com.backendless.service
   import flash.net.registerClassAlias;
   import flash.utils.Dictionary;
 
+  import mx.collections.ArrayCollection;
+
   import mx.rpc.AsyncToken;
   import mx.rpc.IResponder;
   import mx.rpc.Responder;
@@ -38,21 +40,24 @@ package com.backendless.service
   {
     public static const SERVICE_SOURCE:String = "com.backendless.services.persistence.PersistenceService";
     private static var _dataStoreInstances:Dictionary = new Dictionary;
+    private static var classToAliasMap = new Dictionary();
 
-    public function describe( entityName:String, responder:IResponder = null ):BackendlessCollection
+    public function describe( entityName:String, responder:IResponder = null ):AsyncToken
     {
-      var result:BackendlessCollection = new BackendlessCollection( entityName );
-      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "describe", [Backendless.appId, Backendless.version, entityName], responder );
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "describe", [Backendless.appId, Backendless.version, entityName] );
 
-      token.addResponder( new Responder( function ( event:ResultEvent ):void
+      if( responder != null )
+        token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
-                                           result.bindSource( event.result );
-                                         }, function ( event:FaultEvent ):void
+                                           var result:ArrayCollection = new ArrayCollection( event.result as Array );
+                                           responder.result( ResultEvent.createEvent( result, token ) );
+                                         },
+                                         function ( event:FaultEvent ):void
                                          {
                                            onFault( event, responder );
                                          } ) );
 
-      return result;
+      return token;
     }
 
     public function of( candidate:Class ):IDataStore
@@ -73,6 +78,12 @@ package com.backendless.service
     public function mapTableToClass( tableName:String, entityClass:Class ):void
     {
       registerClassAlias( tableName, entityClass );
+      classToAliasMap[ entityClass ] = tableName;
+    }
+
+    public function getTableNameForClass( entityClass:Class ):String
+    {
+      return classToAliasMap[ entityClass ];
     }
   }
 }
