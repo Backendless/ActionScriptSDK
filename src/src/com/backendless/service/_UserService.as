@@ -302,14 +302,13 @@ package com.backendless.service
 	
 			var token:AsyncToken = BackendlessClient.instance.invoke(SERVICE_SOURCE, "update",
 				[Backendless.appId, Backendless.version, user.properties]);
-	
+
+          if( responder != null )
 			token.addResponder(
 				new Responder(
 					function (event:ResultEvent):void
 					{
-						if (responder) responder.result(
-							ResultEvent.createEvent(ObjectsBuilder.updateUser(user, event.result), token)
-						);
+                      responder.result( ResultEvent.createEvent(ObjectsBuilder.updateUser(user, event.result), token) );
 					},
 					function (event:FaultEvent):void
 					{
@@ -325,5 +324,15 @@ package com.backendless.service
 		{
 			return _currentUser;
 		}
+
+      public function getUserRoles( responder:IResponder = null ):AsyncToken
+      {
+        var token:AsyncToken = BackendlessClient.instance.invoke(SERVICE_SOURCE, "getUserRoles", [Backendless.appId, Backendless.version ]);
+
+        if( responder != null )
+          token.addResponder( responder );
+
+        return token;
+      }
 	}
 }
