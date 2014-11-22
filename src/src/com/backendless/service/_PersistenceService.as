@@ -62,9 +62,6 @@ package com.backendless.service
 
     public function of( candidate:Class ):IDataStore
     {
-      if( candidate == BackendlessUser )
-        throw new ObjectNotPersistableError( "BackendlessUser cannot be used with Data Service. Please use the Backendless.userService" );
-
       var instance:IDataStore = _dataStoreInstances[candidate];
 
       if( instance == null )
@@ -83,6 +80,9 @@ package com.backendless.service
 
     public function getTableNameForClass( entityClass:Class ):String
     {
+      if( entityClass == BackendlessUser )
+        return "Users";
+
       return classToAliasMap[ entityClass ];
     }
   }

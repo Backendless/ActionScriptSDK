@@ -7,6 +7,7 @@ package com.backendless.geo
     private var _objectId:String;
     private var _categories:Array;
     private var _metadata:Object = {};
+    private var _objectMetadata:Object = {};
     private var _distance:Number;
 
     public function get objectId():String
@@ -65,6 +66,16 @@ package com.backendless.geo
     public function set ___class( value:String ):void
     {
 
+    }
+
+    public function get objectMetadata():Object
+    {
+      return _objectMetadata;
+    }
+
+    public function set objectMetadata( value:Object ):void
+    {
+      _objectMetadata = value;
     }
   }
 }

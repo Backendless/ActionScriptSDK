@@ -17,9 +17,6 @@
  */
 package com.backendless
 {
-  import com.backendless.validators.ArgumentValidator;
-
-  //[RemoteClass( alias = "com.backendless.BackendlessUser" )];
   public class BackendlessUser
   {
     public static const PASSWORD:String = "password";
@@ -50,6 +47,16 @@ package com.backendless
     public function set email( value:String ):void
     {
       setProperty( EMAIL, value );
+    }
+
+    public function get objectId():String
+    {
+      return getProperty( "objectId" );
+    }
+
+    public function set objectId( value:String ):void
+    {
+      setProperty( "objectId", value );
     }
 
     public function setProperty( key:String, value:* ):void

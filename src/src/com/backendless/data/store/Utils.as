@@ -19,6 +19,7 @@ package com.backendless.data.store
 {
   import com.backendless.BackendlessUser;
   import com.backendless.data.BackendlessCollection;
+  import com.backendless.geo.BackendlessGeoQuery;
 
   import flash.utils.ByteArray;
 
@@ -30,7 +31,11 @@ package com.backendless.data.store
   {
     public static function prepareArgForSend( obj:Object ):Object
     {
-      if( obj is Array )
+      if( obj is BackendlessGeoQuery )
+      {
+        return obj;
+      }
+      else if( obj is Array )
       {
         for( var prop:* in obj )
           obj[ prop ] = prepareArgForSend( obj[ prop ] );

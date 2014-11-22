@@ -20,6 +20,7 @@ package com.backendless
   import com.backendless.cache.Cache;
   import com.backendless.core.backendless;
   import com.backendless.counters.Counters;
+  import com.backendless.geo.BackendlessGeoQuery;
   import com.backendless.messaging.Message;
   import com.backendless.property.AbstractProperty;
   import com.backendless.property.ObjectProperty;
@@ -107,10 +108,12 @@ package com.backendless
 
             RpcClassAliasInitializer.registerClassAliases();
 
+            //_persistenceService.mapTableToClass( "Users", BackendlessUser );
 			registerClassAlias( "com.backendless.services.users.property.AbstractProperty", AbstractProperty );
 			registerClassAlias( "com.backendless.services.users.property.UserProperty", UserProperty );
 			registerClassAlias( "com.backendless.services.persistence.ObjectProperty", ObjectProperty );
-			registerClassAlias( "com.backendless.services.messaging.Message", Message );
+            registerClassAlias( "com.backendless.geo.BackendlessGeoQuery", BackendlessGeoQuery );
+            registerClassAlias( "com.backendless.services.messaging.Message", Message );
 			registerClassAlias( "com.backendless.geo.model.GeoCategory", GeoCategory );
 			registerClassAlias( "com.backendless.geo.model.GeoPoint", GeoPoint );
             registerClassAlias( "com.backendless.services.file.FileServiceActionResult", FileServiceActionResult );

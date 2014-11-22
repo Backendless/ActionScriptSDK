@@ -19,7 +19,8 @@ package com.backendless.data
 {
 	import com.backendless.Backendless;
 	import com.backendless.BackendlessDataQuery;
-	import com.backendless.QueryOptions;
+  import com.backendless.BackendlessUser;
+  import com.backendless.QueryOptions;
 	import com.backendless.data.event.DynamicLoadEvent;
 	import com.backendless.data.store.DataStore;
 	import com.backendless.helpers.ObjectsBuilder;
@@ -135,7 +136,13 @@ package com.backendless.data
 			{
 				for each( var item:Object in source as Array )
 				{
-					var entity:Object = ObjectsBuilder.build( _entityClass, item );
+                  var entity:Object;
+
+                  if( _entityClass == BackendlessUser )
+                    entity = ObjectsBuilder.buildUser( item );
+                  else
+					entity = ObjectsBuilder.build( _entityClass, item );
+
 					_currentPage.addItem( entity );
    			        //addItem( entity );
 				}
@@ -144,7 +151,13 @@ package com.backendless.data
 			{
 				for each( var item1:Object in source.data as Array )
 				{
-					var entity1:Object = ObjectsBuilder.build( _entityClass, item1 );
+					var entity1:Object;
+
+                  if( _entityClass == BackendlessUser )
+                    entity1 = ObjectsBuilder.buildUser( item1 );
+                  else
+					entity1 = ObjectsBuilder.build( _entityClass, item1 );
+
 					_currentPage.addItem( entity1 );
 					//addItem( entity1 );
 				}				
