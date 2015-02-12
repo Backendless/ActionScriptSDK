@@ -20,10 +20,14 @@ package com.backendless.data.store
   import com.backendless.BackendlessUser;
   import com.backendless.data.BackendlessCollection;
   import com.backendless.geo.BackendlessGeoQuery;
+  import com.backendless.geo.GeoPoint;
 
   import flash.utils.ByteArray;
+  import flash.utils.describeType;
 
   import flash.utils.getQualifiedClassName;
+
+  import mx.collections.ArrayCollection;
 
   import mx.utils.ObjectUtil;
 
@@ -31,7 +35,7 @@ package com.backendless.data.store
   {
     public static function prepareArgForSend( obj:Object ):Object
     {
-      if( obj is BackendlessGeoQuery )
+      if( obj is BackendlessGeoQuery || obj is ArrayCollection || obj is GeoPoint )
       {
         return obj;
       }
@@ -65,8 +69,14 @@ package com.backendless.data.store
         var targetObject:Object = {};
         var objInfo:Object = ObjectUtil.getClassInfo( obj );
 
+        //var xDesc:XML = describeType( Object( obj ).constructor );
+
         for each( var item:QName in objInfo.properties )
         {
+          //if( xDesc.factory.variable.(@name== item.localName ).metadata.(@name == 'Transient' ).length() > 0 )
+          if( objInfo.metadata[ item.localName ].hasOwnProperty( 'Transient' ) )
+            continue;
+
           var objProp:* = obj[ item.localName ];
 
           if( objProp != null && (!ObjectUtil.isSimple( objProp ) || objProp is Array) )
@@ -88,6 +98,13 @@ package com.backendless.data.store
         for( var prop:* in dataObject )
           addClassName( dataObject[ prop ], false );
       }
+      else if( dataObject is ArrayCollection )
+      {
+        var arraycollection:ArrayCollection = dataObject as ArrayCollection;
+
+        for each( var obj:* in arraycollection )
+          addClassName( obj, false );
+      }
       else if( dataObject is BackendlessCollection )
       {
         var collection:BackendlessCollection = dataObject as BackendlessCollection;
@@ -95,7 +112,7 @@ package com.backendless.data.store
         if( collection.currentPage != null )
           addClassName( collection.currentPage.source, false );
       }
-      else if( !ObjectUtil.isSimple( dataObject ) && !(dataObject is BackendlessUser) )
+      else if( !ObjectUtil.isSimple( dataObject ) && !(dataObject is BackendlessUser) && !(dataObject is GeoPoint) )
       {
         var objInfo:Object = ObjectUtil.getClassInfo( dataObject );
 

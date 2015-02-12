@@ -11,23 +11,23 @@
 
 package com.backendless.media
 {
-import com.backendless.errors.MediaError;
-import com.backendless.service._MediaService;
+  import com.backendless.errors.MediaError;
+  import com.backendless.service._MediaService;
 
+  import org.osmf.net.DynamicStreamingItem;
+  import org.osmf.net.DynamicStreamingResource;
 
-import org.osmf.net.DynamicStreamingItem;
-import org.osmf.net.DynamicStreamingResource;
-import spark.components.mediaClasses.DynamicStreamingVideoItem;
+  import spark.components.mediaClasses.DynamicStreamingVideoItem;
 
-[DefaultProperty("streamItems")]
+  [DefaultProperty("streamItems")]
 
-public class BackendlessVideoSource extends Object
-{
-    private var _tube: String;
+  public class BackendlessVideoSource extends Object
+  {
+    private var _tube:String;
 
     public function BackendlessVideoSource()
     {
-        super();
+      super();
     }
 
     [Inspectable(category="General")]
@@ -48,18 +48,17 @@ public class BackendlessVideoSource extends Object
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-     */
-    public function get initialIndex():int
+     */ public function get initialIndex():int
     {
-        return _initialIndex;
+      return _initialIndex;
     }
 
     /**
      *  @private
      */
-    public function set initialIndex(value:int):void
+    public function set initialIndex( value:int ):void
     {
-        _initialIndex = value;
+      _initialIndex = value;
     }
 
     //----------------------------------
@@ -77,18 +76,17 @@ public class BackendlessVideoSource extends Object
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-     */
-    public function get streamItems():Vector.<DynamicStreamingVideoItem>
+     */ public function get streamItems():Vector.<DynamicStreamingVideoItem>
     {
-        return _streamItems;
+      return _streamItems;
     }
 
     /**
      *  @private
      */
-    public function set streamItems(value:Vector.<DynamicStreamingVideoItem>):void
+    public function set streamItems( value:Vector.<DynamicStreamingVideoItem> ):void
     {
-        _streamItems = value;
+      _streamItems = value;
     }
 
     //----------------------------------
@@ -115,85 +113,94 @@ public class BackendlessVideoSource extends Object
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-     */
-    public function get streamType():String
+     */ public function get streamType():String
     {
-        return _streamType;
+      return _streamType;
     }
 
     /**
      *  @private
      */
-    public function set streamType(value:String):void
+    public function set streamType( value:String ):void
     {
-        _streamType = value;
+      _streamType = value;
     }
 
-    public function get tube():String {
-        return _tube;
+    public function get tube():String
+    {
+      return _tube;
     }
 
-    public function set tube(value:String):void {
-        _tube = value;
+    public function set tube( value:String ):void
+    {
+      _tube = value;
     }
 
-    public static function makeStreamingResource(value:Object):DynamicStreamingResource {
+    public static function makeStreamingResource( value:Object ):DynamicStreamingResource
+    {
+      if( value is BackendlessVideoSource )
+      {
+        var streamingSource:BackendlessVideoSource = value as BackendlessVideoSource;
+        var dsr:DynamicStreamingResource;
+        var url:String;
 
-        if (value is BackendlessVideoSource)
+        if( streamingSource.streamType == "any" || streamingSource.streamType == "live" )
+          url = _MediaService.BACKENDLESS_MEDIA_STREAMING_URL_LIVE;
+        else
+          url = _MediaService.BACKENDLESS_MEDIA_STREAMING_URL_VOD;
+
+        dsr = new DynamicStreamingResource( url, streamingSource.streamType );
+
+        if( dsr )
         {
-            var streamingSource:BackendlessVideoSource = value as BackendlessVideoSource;
-            var dsr:DynamicStreamingResource;
+          var params:Array = _MediaService.getConnectParams( streamingSource.tube, streamingSource.operationType );
+          if( dsr.connectionArguments == null )
+          {
+            dsr.connectionArguments = new Vector.<Object>();
+          }
 
-            dsr = new DynamicStreamingResource(_MediaService.BACKENDLESS_MEDIA_STREAMING_URL,
-                    streamingSource.streamType);
+          for each ( var object:Object in params )
+          {
+            dsr.connectionArguments.push( object );
+          }
 
-            if (dsr) {
-                var params:Array = _MediaService.getConnectParams(streamingSource.tube, streamingSource.operationType);
-                if(dsr.connectionArguments == null)
-                {
-                    dsr.connectionArguments = new Vector.<Object>();
-                }
+          var n:int = streamingSource.streamItems.length;
+          var item:DynamicStreamingVideoItem;
+          var dsi:DynamicStreamingItem;
+          var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>( n );
 
-                for each (var object:Object in params) {
-                    dsr.connectionArguments.push(object);
-                }
+          for( var i:int = 0; i < n; i++ )
+          {
+            item = streamingSource.streamItems[i];
+            dsi = new DynamicStreamingItem( item.streamName, item.bitrate );
+            streamItems[i] = dsi;
+          }
+          dsr.streamItems = streamItems;
 
-                var n:int = streamingSource.streamItems.length;
-                var item:DynamicStreamingVideoItem;
-                var dsi:DynamicStreamingItem;
-                var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>(n);
+          dsr.initialIndex = streamingSource.initialIndex;
 
-                for (var i:int = 0; i < n; i++)
-                {
-                    item = streamingSource.streamItems[i];
-                    dsi = new DynamicStreamingItem(item.streamName, item.bitrate);
-                    streamItems[i] = dsi;
-                }
-                dsr.streamItems = streamItems;
-
-                dsr.initialIndex = streamingSource.initialIndex;
-
-                // add video type metadata so if the URL is ambiguous, OSMF will
-                // know what type of file we're trying to connect to
-                dsr.mediaType = "video";
-            }
-            return dsr;
+          // add video type metadata so if the URL is ambiguous, OSMF will
+          // know what type of file we're trying to connect to
+          dsr.mediaType = "video";
         }
-        else{
-            throw new MediaError("Video display supports only BackendlessVideoSource objects as source")
-        }
+        return dsr;
+      }
+      else
+      {
+        throw new MediaError( "Video display supports only BackendlessVideoSource objects as source" )
+      }
     }
 
     public function get operationType():String
     {
-        if(_streamType == "live")
-            return "playLive";
-        if(_streamType == "recorded")
-            return "playRecorded";
-        if(_streamType == "any")
-            return "playAny";
-        else throw MediaError("Unsupported stream type");
+      if( _streamType == "live" )
+        return "playLive";
+      if( _streamType == "recorded" )
+        return "playRecorded";
+      if( _streamType == "any" )
+        return "playAny";
+      else throw MediaError( "Unsupported stream type" );
     }
 
-}
+  }
 }

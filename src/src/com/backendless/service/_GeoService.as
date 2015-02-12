@@ -19,10 +19,11 @@ package com.backendless.service
 {
   import com.backendless.Backendless;
   import com.backendless.data.BackendlessCollection;
+  import com.backendless.data.store.Utils;
   import com.backendless.errors.InvalidArgumentError;
   import com.backendless.geo.BackendlessGeoQuery;
+  import com.backendless.geo.GeoCluster;
   import com.backendless.geo.GeoPoint;
-  import com.backendless.geo.PointBase;
   import com.backendless.helpers.ClassHelper;
   import com.backendless.rpc.BackendlessClient;
   import com.backendless.validators.ArgumentValidator;
@@ -48,7 +49,6 @@ package com.backendless.service
         throw new InvalidArgumentError( "the 'default' name is reserved; you can't use it" );
 
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "addCategory", [Backendless.appId, Backendless.version, name] );
-
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder ) responder.result( event );
@@ -69,7 +69,6 @@ package com.backendless.service
         throw new InvalidArgumentError( "the 'default' name is reserved; you can't delete it" );
 
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "deleteCategory", [Backendless.appId, Backendless.version, name] );
-
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder ) responder.result( event );
@@ -94,10 +93,11 @@ package com.backendless.service
       if( point.categories == null || point.categories.length == 0 )
         point.categories = [ DEFAULT_CATEGORY ];
 
+      for each( var metaValue in point.metadata )
+        Utils.addClassName( metaValue, false );
+
       var remoteMethod:String = point.objectId == null ? "addPoint" : "updatePoint";
-
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, remoteMethod, [Backendless.appId, Backendless.version, point] );
-
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder ) responder.result( event );
@@ -112,9 +112,7 @@ package com.backendless.service
     public function removePoint( point:GeoPoint, responder:IResponder = null ):AsyncToken
     {
       ArgumentValidator.notNull( point );
-
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "removePoint", [Backendless.appId, Backendless.version, point.objectId] );
-
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder )
@@ -130,7 +128,6 @@ package com.backendless.service
     public function getCategories( responder:IResponder ):AsyncToken
     {
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "getCategories", [Backendless.appId, Backendless.version] );
-
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder ) responder.result( event );
@@ -146,7 +143,9 @@ package com.backendless.service
     {
       ArgumentValidator.notNull( query );
       ArgumentValidator.notNegative( query.offset, "offset can't be negative" );
-      if( query.units != null ) validateCoordinates( query );
+
+      if( query.units != null )
+        validateCoordinates( query );
 
       var result:BackendlessCollection = new BackendlessCollection( ClassHelper.getCanonicalClassName( GeoPoint ) );
       result.pageSize = query.pageSize;
@@ -155,6 +154,10 @@ package com.backendless.service
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            result.bindSource( event.result );
+
+                                           for each( var geoPoint:GeoPoint in result.currentPage )
+                                            if( geoPoint is GeoCluster )
+                                              (geoPoint as GeoCluster).geoQuery = query;
 
                                            if( responder )
                                              responder.result( ResultEvent.createEvent( result, token,  event.message ) );
@@ -167,16 +170,52 @@ package com.backendless.service
       return result;
     }
 
-    private function validateCoordinates( point:PointBase ):void
+    public function loadMetadata( pointOrCluster:*, responder:IResponder ):AsyncToken
     {
-      ArgumentValidator.validate( point.longitude, function ( value:Number ):Boolean
-                                  {
-                                    return !isNaN( value ) && value <= 180 && value >= -180;
-                                  }, "Value of longitude should be less or equal 180 and greater or equal -180" )
-      ArgumentValidator.validate( point.latitude, function ( value:Number ):Boolean
-                                  {
-                                    return !isNaN( value ) && value <= 90 && value >= -90;
-                                  }, "Value of latitude should be less or equal 90 and greater or equal -90" )
+      var methodArgs:Array;
+
+      if( pointOrCluster is GeoPoint )
+      {
+        var geoPoint:GeoPoint = pointOrCluster as GeoPoint;
+        methodArgs = [Backendless.appId, Backendless.version, geoPoint.objectId ];
+      }
+
+      if( pointOrCluster is GeoCluster )
+      {
+        var geoCluster:GeoCluster = pointOrCluster as GeoCluster;
+        methodArgs.push( geoCluster.geoQuery );
+      }
+
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "loadMetadata", methodArgs );
+      token.addResponder( new Responder( function ( event:ResultEvent ):void
+                                         {
+                                           pointOrCluster.metadata = event.result;
+
+                                           if( responder )
+                                             responder.result( ResultEvent.createEvent( pointOrCluster, token, event.message ) );
+                                         },
+                                         function ( event:FaultEvent ):void
+                                         {
+                                           onFault( event, responder );
+                                         } ) );
+
+      return token;
+    }
+
+    private function validateCoordinates( pointOrQuery ):void
+    {
+      if( pointOrQuery is GeoPoint || pointOrQuery is BackendlessGeoQuery )
+      {
+        ArgumentValidator.validate( pointOrQuery.longitude, function ( value:Number ):Boolean
+        {
+          return !isNaN( value ) && value <= 180 && value >= -180;
+        }, "Value of longitude should be less or equal 180 and greater or equal -180" );
+
+        ArgumentValidator.validate( pointOrQuery.latitude, function ( value:Number ):Boolean
+        {
+          return !isNaN( value ) && value <= 90 && value >= -90;
+        }, "Value of latitude should be less or equal 90 and greater or equal -90" );
+      }
     }
   }
 }

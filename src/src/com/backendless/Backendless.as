@@ -21,6 +21,7 @@ package com.backendless
   import com.backendless.core.backendless;
   import com.backendless.counters.Counters;
   import com.backendless.geo.BackendlessGeoQuery;
+  import com.backendless.geo.GeoCluster;
   import com.backendless.messaging.Message;
   import com.backendless.property.AbstractProperty;
   import com.backendless.property.ObjectProperty;
@@ -48,7 +49,8 @@ package com.backendless
 
 	public class Backendless
 	{
-      public static var SITE_URL:String = "https://api.backendless.com";
+        public static var SITE_URL:String = "https://api.backendless.com";
+      //public static var SITE_URL:String = "https://api.gmo-mbaas.com";
 
 		public static function get AMF_ENDPOINT():String
 		{
@@ -116,6 +118,7 @@ package com.backendless
             registerClassAlias( "com.backendless.services.messaging.Message", Message );
 			registerClassAlias( "com.backendless.geo.model.GeoCategory", GeoCategory );
 			registerClassAlias( "com.backendless.geo.model.GeoPoint", GeoPoint );
+            registerClassAlias( "com.backendless.geo.model.GeoCluster", GeoCluster );
             registerClassAlias( "com.backendless.services.file.FileServiceActionResult", FileServiceActionResult );
 				
 			BackendlessClient.instance.backendless::initChannel();

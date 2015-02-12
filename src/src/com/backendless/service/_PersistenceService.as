@@ -20,9 +20,11 @@ package com.backendless.service
   import com.backendless.Backendless;
   import com.backendless.BackendlessUser;
   import com.backendless.data.BackendlessCollection;
+  import com.backendless.data.DataPermission;
   import com.backendless.data.IDataStore;
   import com.backendless.data.store.DataStore;
   import com.backendless.errors.ObjectNotPersistableError;
+  import com.backendless.helpers.ClassHelper;
   import com.backendless.rpc.BackendlessClient;
 
   import flash.net.registerClassAlias;
@@ -39,8 +41,14 @@ package com.backendless.service
   public class _PersistenceService extends BackendlessService
   {
     public static const SERVICE_SOURCE:String = "com.backendless.services.persistence.PersistenceService";
+    private static const _permissions:DataPermission = new DataPermission();
     private static var _dataStoreInstances:Dictionary = new Dictionary;
     private static var classToAliasMap = new Dictionary();
+
+    public static function get Permissions():DataPermission
+    {
+      return _permissions;
+    }
 
     public function describe( entityName:String, responder:IResponder = null ):AsyncToken
     {
@@ -83,7 +91,12 @@ package com.backendless.service
       if( entityClass == BackendlessUser )
         return "Users";
 
-      return classToAliasMap[ entityClass ];
+      var className:String = classToAliasMap[ entityClass ];
+
+      if( className == null )
+   		return ClassHelper.getCanonicalShortClassName( entityClass );
+
+      return className;
     }
   }
 }

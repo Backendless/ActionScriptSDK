@@ -1,8 +1,11 @@
 package com.backendless.geo
 {
   [RemoteClass(alias="com.backendless.geo.BackendlessGeoQuery")]
-  public class BackendlessGeoQuery extends PointBase
+  public class BackendlessGeoQuery
   {
+    private static const CLUSTER_SIZE_DEFAULT_VALUE = 100;
+    private var _latitude:Number;
+    private var _longitude:Number;
     private var _searchRectangle:Array = null;
     private var _radius:Number;
     private var _units:String;
@@ -13,6 +16,28 @@ package com.backendless.geo
     private var _offset:int;
     private var _relativeFindPercentThreshold:Number = 0;
     private var _whereClause:String;
+    private var _dpp:Number;
+    private var _clusterGridSize:int = CLUSTER_SIZE_DEFAULT_VALUE;
+
+    public function get latitude():Number
+    {
+      return _latitude;
+    }
+
+    public function set latitude( value:Number ):void
+    {
+      _latitude = value;
+    }
+
+    public function get longitude():Number
+    {
+      return _longitude;
+    }
+
+    public function set longitude( value:Number ):void
+    {
+      _longitude = value;
+    }
 
     public function get offset():int
     {
@@ -94,6 +119,26 @@ package com.backendless.geo
       _searchRectangle = value;
     }
 
+    public function get dpp():Number
+    {
+      return _dpp;
+    }
+
+    public function set dpp( value:Number ):void
+    {
+      _dpp = value;
+    }
+
+    public function get clusterGridSize():int
+    {
+      return _clusterGridSize;
+    }
+
+    public function set clusterGridSize( value:int ):void
+    {
+      _clusterGridSize = value;
+    }
+
     public function addMetadata( key:*, value:* ):void
     {
       if( key == null || value == null )
@@ -126,6 +171,17 @@ package com.backendless.geo
     public function set whereClause( value:String ):void
     {
       _whereClause = value;
+    }
+
+    public function setClusteringParams( westLongitude:Number, eastLongitude:Number, mapWidth:int, clusterGridSize:int = CLUSTER_SIZE_DEFAULT_VALUE ):void
+    {
+      var longDiff:Number = eastLongitude - westLongitude;
+
+      if( longDiff < 0 )
+        longDiff += 360;
+
+      dpp = longDiff / mapWidth;
+      this.clusterGridSize = clusterGridSize;
     }
   }
 }

@@ -28,15 +28,11 @@ package com.backendless.data.store
 	import com.backendless.validators.ArgumentValidator;
 	
 	import flash.events.EventDispatcher;
-	import flash.utils.describeType;
-	import flash.utils.getQualifiedClassName;
-	
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
-
 
 	public class DataStore extends EventDispatcher implements IDataStore
 	{
@@ -48,10 +44,6 @@ package com.backendless.data.store
 		{
 			candidateFullClassName = ClassHelper.getCanonicalClassName(candidate);
             candidateClassName = Backendless.PersistenceService.getTableNameForClass( candidate );
-
-            if( candidateClassName == null )
-			  candidateClassName = ClassHelper.getCanonicalShortClassName(candidate);
-
 			candidateClass = candidate;
 		}
 		
@@ -111,8 +103,8 @@ package com.backendless.data.store
 
           if( !(entityId is String) )
           {
-            args.push( [] );
-            args.push( 0 );
+            args.push( [] );  // relations
+            args.push( 0 );   // relations depth
           }
 			
 			var token:AsyncToken = BackendlessClient.instance.invoke(
