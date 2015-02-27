@@ -24,6 +24,7 @@ package com.backendless.service
   import com.backendless.geo.BackendlessGeoQuery;
   import com.backendless.geo.GeoCluster;
   import com.backendless.geo.GeoPoint;
+  import com.backendless.geo.SearchMatchesResult;
   import com.backendless.helpers.ClassHelper;
   import com.backendless.rpc.BackendlessClient;
   import com.backendless.validators.ArgumentValidator;
@@ -168,6 +169,32 @@ package com.backendless.service
                                          } ) );
 
       return result;
+    }
+
+    public function relativeFind( geoQuery:BackendlessGeoQuery, responder:IResponder ):AsyncToken
+    {
+      ArgumentValidator.notNull( geoQuery, "BackendlessGeoQuery cannot be null" );
+      ArgumentValidator.notNull( geoQuery.relativeFindMetadata, "relativeFindMetadata in BackendlessGeoQuery cannot be null" );
+      ArgumentValidator.notEmpty( geoQuery.relativeFindMetadata, "relativeFindMetadata in BackendlessGeoQuery must contain at least one metadata property" );
+      ArgumentValidator.greaterThanZero( geoQuery.relativeFindPercentThreshold, "relativeFindPercentThreshold in BackendlessGeoQuery must be greater than zero" );
+
+      var result:BackendlessCollection = new BackendlessCollection( ClassHelper.getCanonicalClassName( SearchMatchesResult ) );
+      result.pageSize = geoQuery.pageSize;
+
+      var methodArgs:Array = [Backendless.appId, Backendless.version, geoQuery ];
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "relativeFind", methodArgs );
+      token.addResponder( new Responder( function ( event:ResultEvent ):void
+                                         {
+                                           result.bindSource( event.result );
+                                           if( responder )
+                                             responder.result( ResultEvent.createEvent( result, token, event.message ) );
+                                         },
+                                         function ( event:FaultEvent ):void
+                                         {
+                                           onFault( event, responder );
+                                         } ) );
+
+      return token;
     }
 
     public function loadMetadata( pointOrCluster:*, responder:IResponder ):AsyncToken

@@ -15,6 +15,7 @@ package com.backendless.geo
     private var _pageSize:int = 100;
     private var _offset:int;
     private var _relativeFindPercentThreshold:Number = 0;
+    private var _relativeFindMetadata:Object;
     private var _whereClause:String;
     private var _dpp:Number;
     private var _clusterGridSize:int = CLUSTER_SIZE_DEFAULT_VALUE;
@@ -77,6 +78,16 @@ package com.backendless.geo
     public function set metadata( value:Object ):void
     {
       _metadata = value;
+    }
+
+    public function get relativeFindMetadata():Object
+    {
+      return _relativeFindMetadata;
+    }
+
+    public function set relativeFindMetadata( value:Object ):void
+    {
+      _relativeFindMetadata = value;
     }
 
     public function get categories():Array
@@ -142,13 +153,10 @@ package com.backendless.geo
     public function addMetadata( key:*, value:* ):void
     {
       if( key == null || value == null )
-      {
-        throw new Error( "Neither null key nor null value is allowed" );
-      }
+        throw new Error( "null key or null value are not allowed" );
+
       if( _metadata == null )
-      {
         _metadata = new Object();
-      }
 
       _metadata[key] = value;
     }
@@ -161,6 +169,17 @@ package com.backendless.geo
     public function set relativeFindPercentThreshold( value:Number ):void
     {
       _relativeFindPercentThreshold = value;
+    }
+
+    public function addRelativeFindMetadata( key:*, value:* ):void
+    {
+      if( key == null || value == null )
+         throw new Error( "null key or null value are not allowed" );
+
+       if( _relativeFindMetadata == null )
+         _relativeFindMetadata = new Object();
+
+      _relativeFindMetadata[key] = value;
     }
 
     public function get whereClause():String
