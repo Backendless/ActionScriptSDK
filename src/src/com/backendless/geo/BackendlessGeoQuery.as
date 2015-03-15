@@ -3,7 +3,7 @@ package com.backendless.geo
   [RemoteClass(alias="com.backendless.geo.BackendlessGeoQuery")]
   public class BackendlessGeoQuery
   {
-    private static const CLUSTER_SIZE_DEFAULT_VALUE = 100;
+    private static const CLUSTER_SIZE_DEFAULT_VALUE:int = 100;
     private var _latitude:Number;
     private var _longitude:Number;
     private var _searchRectangle:Array = null;

@@ -36,7 +36,7 @@ package com.backendless.service
     public static const BACKENDLESS_MEDIA_STREAMING_URL_VOD:String = "rtmp://wowza.backendless.com/mediaAppVod/";
     private static const VOD:int = 0;
     private static const LIVE:int = 1;
-    private static const VOD_AND_LIVE = 2;
+    private static const VOD_AND_LIVE:int = 2;
 
     public function playVOD( tube:String, streamName:String, responder:IResponder ):void
     {

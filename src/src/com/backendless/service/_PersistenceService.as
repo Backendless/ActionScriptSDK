@@ -43,7 +43,7 @@ package com.backendless.service
     public static const SERVICE_SOURCE:String = "com.backendless.services.persistence.PersistenceService";
     private static const _permissions:DataPermission = new DataPermission();
     private static var _dataStoreInstances:Dictionary = new Dictionary;
-    private static var classToAliasMap = new Dictionary();
+    private static var classToAliasMap:Dictionary = new Dictionary();
 
     public static function get Permissions():DataPermission
     {

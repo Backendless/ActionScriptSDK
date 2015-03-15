@@ -94,7 +94,7 @@ package com.backendless.service
       if( point.categories == null || point.categories.length == 0 )
         point.categories = [ DEFAULT_CATEGORY ];
 
-      for each( var metaValue in point.metadata )
+      for each( var metaValue:Object in point.metadata )
         Utils.addClassName( metaValue, false );
 
       var remoteMethod:String = point.objectId == null ? "addPoint" : "updatePoint";
@@ -229,7 +229,7 @@ package com.backendless.service
       return token;
     }
 
-    private function validateCoordinates( pointOrQuery ):void
+    private function validateCoordinates( pointOrQuery:* ):void
     {
       if( pointOrQuery is GeoPoint || pointOrQuery is BackendlessGeoQuery )
       {

@@ -20,9 +20,11 @@ package com.backendless.data.store
   import com.backendless.BackendlessUser;
   import com.backendless.data.BackendlessCollection;
   import com.backendless.geo.BackendlessGeoQuery;
+  import com.backendless.geo.GeoCluster;
   import com.backendless.geo.GeoPoint;
 
   import flash.utils.ByteArray;
+  import flash.utils.Dictionary;
   import flash.utils.describeType;
 
   import flash.utils.getQualifiedClassName;
@@ -35,7 +37,7 @@ package com.backendless.data.store
   {
     public static function prepareArgForSend( obj:Object ):Object
     {
-      if( obj is BackendlessGeoQuery || obj is ArrayCollection || obj is GeoPoint )
+      if( obj is BackendlessGeoQuery || obj is ArrayCollection || obj is GeoPoint || obj is GeoCluster )
       {
         return obj;
       }
@@ -74,7 +76,7 @@ package com.backendless.data.store
         for each( var item:QName in objInfo.properties )
         {
           //if( xDesc.factory.variable.(@name== item.localName ).metadata.(@name == 'Transient' ).length() > 0 )
-          if( objInfo.metadata[ item.localName ].hasOwnProperty( 'Transient' ) )
+          if( objInfo.metadata != null && objInfo.metadata[ item.localName ].hasOwnProperty( 'Transient' ) )
             continue;
 
           var objProp:* = obj[ item.localName ];
@@ -91,26 +93,34 @@ package com.backendless.data.store
       return obj;
     }
 
-    public static function addClassName( dataObject:*, isRoot:Boolean ):void
+    public static function addClassName( dataObject:*, isRoot:Boolean, context:Dictionary = null ):void
     {
+      if( context == null )
+        context = new Dictionary();
+
+      if( context[ dataObject ] != null )
+        return;
+
+      context[ dataObject ] = true;
+
       if( dataObject is Array )
       {
         for( var prop:* in dataObject )
-          addClassName( dataObject[ prop ], false );
+          addClassName( dataObject[ prop ], false, context );
       }
       else if( dataObject is ArrayCollection )
       {
         var arraycollection:ArrayCollection = dataObject as ArrayCollection;
 
         for each( var obj:* in arraycollection )
-          addClassName( obj, false );
+          addClassName( obj, false, context );
       }
       else if( dataObject is BackendlessCollection )
       {
         var collection:BackendlessCollection = dataObject as BackendlessCollection;
 
         if( collection.currentPage != null )
-          addClassName( collection.currentPage.source, false );
+          addClassName( collection.currentPage.source, false, context );
       }
       else if( !ObjectUtil.isSimple( dataObject ) && !(dataObject is BackendlessUser) && !(dataObject is GeoPoint) )
       {
@@ -121,7 +131,7 @@ package com.backendless.data.store
           var obj:* = dataObject[ item.localName ];
 
           if( obj != null && (!ObjectUtil.isSimple( obj ) || obj is Array) )
-            addClassName( obj, false );
+            addClassName( obj, false, context );
         }
 
         if( !isRoot && !dataObject.hasOwnProperty( "___class" ) )
