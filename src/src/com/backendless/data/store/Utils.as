@@ -35,18 +35,28 @@ package com.backendless.data.store
 
   public class Utils
   {
-    public static function prepareArgForSend( obj:Object ):Object
+    public static function prepareArgForSend( obj:Object, context:Dictionary = null ):Object
     {
+      if( context == null )
+        context = new Dictionary();
+
+      if( context[ obj ] != null )
+        return context[ obj ];
+
       if( obj is BackendlessGeoQuery || obj is ArrayCollection || obj is GeoPoint || obj is GeoCluster )
       {
         return obj;
       }
       else if( obj is Array )
       {
-        for( var prop:* in obj )
-          obj[ prop ] = prepareArgForSend( obj[ prop ] );
+        var arrayCopy:Array = new Array();
+        arrayCopy.length = (obj as Array).length;
+        context[ obj ] = arrayCopy;
 
-        return obj;
+        for( var prop:* in obj )
+          arrayCopy[ prop ] = prepareArgForSend( obj[ prop ], context );
+
+        return arrayCopy;
       }
       else if( obj is BackendlessCollection )
       {
@@ -69,6 +79,7 @@ package com.backendless.data.store
       else if( !ObjectUtil.isSimple( obj ) && !(obj is ByteArray))
       {
         var targetObject:Object = {};
+        context[ obj ] = targetObject;
         var objInfo:Object = ObjectUtil.getClassInfo( obj );
 
         //var xDesc:XML = describeType( Object( obj ).constructor );
@@ -82,7 +93,7 @@ package com.backendless.data.store
           var objProp:* = obj[ item.localName ];
 
           if( objProp != null && (!ObjectUtil.isSimple( objProp ) || objProp is Array) )
-            targetObject[ item.localName ] = prepareArgForSend( objProp );
+            targetObject[ item.localName ] = prepareArgForSend( objProp, context );
           else
             targetObject[ item.localName ] = objProp;
         }
