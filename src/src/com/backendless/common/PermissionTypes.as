@@ -1,4 +1,4 @@
-package com.backendless.data
+package com.backendless.common
 {
   public class PermissionTypes
   {

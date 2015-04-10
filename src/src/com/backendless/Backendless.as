@@ -29,6 +29,7 @@ package com.backendless
   import com.backendless.rpc.BackendlessClient;
   import com.backendless.service._FileService;
   import com.backendless.service._GeoService;
+  import com.backendless.logging._LoggingService;
   import com.backendless.service._MediaService;
   import com.backendless.service._MessagingService;
   import com.backendless.service._PersistenceService;
@@ -85,6 +86,7 @@ package com.backendless
 		private static const _messagingService:_MessagingService = new _MessagingService();
 		private static const _fileService:_FileService = new _FileService();
         private static const _mediaService:_MediaService = new _MediaService();
+        private static const _loggingService:_LoggingService = new _LoggingService();
 
 		/**
 		 * Initializes the application instance with its all required dependencies
@@ -158,6 +160,11 @@ package com.backendless
 		{
 			return _persistenceService;
 		}
+
+        public static function get Geo():_GeoService
+        {
+          return _geoService;
+        }
 	
 		public static function get GeoService():_GeoService
 		{
@@ -192,6 +199,11 @@ package com.backendless
         public static function get Counters():com.backendless.counters.Counters
         {
           return com.backendless.counters.Counters.getInstance();
+        }
+
+        public static function get Logging():_LoggingService
+        {
+          return _loggingService;
         }
 	
 		backendless static function setUserToken(userToken:String):void

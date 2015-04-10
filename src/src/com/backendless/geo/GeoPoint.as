@@ -1,5 +1,7 @@
 package com.backendless.geo
 {
+  import flash.utils.getQualifiedClassName;
+
   import mx.collections.ArrayCollection;
   import mx.utils.ObjectUtil;
 
@@ -115,7 +117,7 @@ package com.backendless.geo
     }
     public function toString():String
     {
-      return "GeoPoint{ objectId='".concat( objectId, "' latitude=", latitude,", longitude=",longitude,", categories=[", categories.join(", "),"], metadata={",ObjectUtil.toString( metadata ),"}, distance=",distance,"}" );
+      return getQualifiedClassName( this ) + "{ objectId='".concat( objectId, "' latitude=", latitude,", longitude=",longitude,", categories=[", categories.join(", "),"], metadata={",ObjectUtil.toString( metadata ),"}, distance=",distance,"}" );
     }
   }
 }

@@ -3,6 +3,8 @@
  */
 package com.backendless.data
 {
+  import com.backendless.common.PermissionTypes;
+
   import flash.utils.getQualifiedClassName;
 
   import com.backendless.Backendless;
@@ -23,56 +25,56 @@ package com.backendless.data
       return null;
     }
 
-    public function grantForUser( userId:String, dataObject:Object, responder:IResponder ):void
+    public function grantForUser( userId:String, dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateUserPermission";
       var args:Array = buildArgs( dataObject, userId, PermissionTypes.GRANT );
       serverCall( responder, method, args );
     }
 
-    public function denyForUser( userId:String, dataObject:Object, responder:IResponder ):void
+    public function denyForUser( userId:String, dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateUserPermission";
       var args:Array = buildArgs( dataObject, userId, PermissionTypes.DENY );
       serverCall( responder, method, args );
     }
 
-    public function grantForRole( roleName:String, dataObject:Object, responder:IResponder ):void
+    public function grantForRole( roleName:String, dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateRolePermission";
       var args:Array = buildArgs( dataObject, roleName, PermissionTypes.GRANT );
       serverCall( responder, method, args );
     }
 
-    public function denyForRole( roleName:String, dataObject:Object, responder:IResponder ):void
+    public function denyForRole( roleName:String, dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateRolePermission";
       var args:Array = buildArgs( dataObject, roleName, PermissionTypes.DENY );
       serverCall( responder, method, args );
     }
 
-    public function grantForAllUsers( dataObject:Object, responder:IResponder ):void
+    public function grantForAllUsers( dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateAllUserPermission";
       var args:Array = buildArgs( dataObject, null, PermissionTypes.GRANT );
       serverCall( responder, method, args );
     }
 
-    public function denyForAllUsers( dataObject:Object, responder:IResponder ):void
+    public function denyForAllUsers( dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateAllUserPermission";
       var args:Array = buildArgs( dataObject, null, PermissionTypes.DENY );
       serverCall( responder, method, args );
     }
 
-    public function grantForAllRoles( dataObject:Object, responder:IResponder ):void
+    public function grantForAllRoles( dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateAllRolePermission";
       var args:Array = buildArgs( dataObject, null, PermissionTypes.GRANT );
       serverCall( responder, method, args );
     }
 
-    public function denyForAllRoles( dataObject:Object, responder:IResponder ):void
+    public function denyForAllRoles( dataObject:Object, responder:IResponder = null ):void
     {
       var method:String = "updateAllRolePermission";
       var args:Array = buildArgs( dataObject, null, PermissionTypes.DENY );

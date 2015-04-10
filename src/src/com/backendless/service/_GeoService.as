@@ -118,7 +118,8 @@ package com.backendless.service
                                          {
                                            if( responder )
                                              responder.result( event );
-                                         }, function ( event:FaultEvent ):void
+                                         },
+                                         function ( event:FaultEvent ):void
                                          {
                                            onFault( event, responder );
                                          } ) );
@@ -126,13 +127,15 @@ package com.backendless.service
       return token;
     }
 
-    public function getCategories( responder:IResponder ):AsyncToken
+    public function getCategories( responder:IResponder = null ):AsyncToken
     {
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "getCategories", [Backendless.appId, Backendless.version] );
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
-                                           if( responder ) responder.result( event );
-                                         }, function ( event:FaultEvent ):void
+                                           if( responder )
+                                             responder.result( event );
+                                         },
+                                         function ( event:FaultEvent ):void
                                          {
                                            onFault( event, responder );
                                          } ) );
@@ -171,7 +174,74 @@ package com.backendless.service
       return result;
     }
 
-    public function relativeFind( geoQuery:BackendlessGeoQuery, responder:IResponder ):AsyncToken
+    public function getClusterPoints( geoCluster:GeoCluster, responder:IResponder = null ):AsyncToken
+    {
+      ArgumentValidator.notNull( geoCluster );
+      var result:BackendlessCollection = new BackendlessCollection( ClassHelper.getCanonicalClassName( GeoPoint ) );
+      var args:Array = [Backendless.appId, Backendless.version, geoCluster.objectId, geoCluster.geoQuery ];
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "loadGeoPoints", args );
+
+      token.addResponder( new Responder( function ( event:ResultEvent ):void
+                                         {
+                                           result.bindSource( event.result );
+
+                                           for each( var geoPoint:GeoPoint in result.currentPage )
+                                            if( geoPoint is GeoCluster )
+                                              (geoPoint as GeoCluster).geoQuery = geoCluster.geoQuery;
+
+                                           if( responder )
+                                             responder.result( ResultEvent.createEvent( result, token,  event.message ) );
+                                         },
+                                         function ( event:FaultEvent ):void
+                                         {
+                                           onFault( event, responder );
+                                         } ) );
+      return token;
+    }
+
+    public function getFencePoints( geoFenceName:String, geoQuery:BackendlessGeoQuery = null, responder:IResponder = null ):AsyncToken
+    {
+      ArgumentValidator.notNull( geoFenceName );
+      var result:BackendlessCollection = new BackendlessCollection( ClassHelper.getCanonicalClassName( GeoPoint ) );
+      var args:Array = [Backendless.appId, Backendless.version, geoFenceName, geoQuery ];
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "getPoints", args );
+
+      token.addResponder( new Responder( function ( event:ResultEvent ):void
+                                         {
+                                           result.bindSource( event.result );
+
+                                           for each( var geoPoint:GeoPoint in result.currentPage )
+                                            if( geoPoint is GeoCluster )
+                                              (geoPoint as GeoCluster).geoQuery = geoQuery;
+
+                                           if( responder )
+                                             responder.result( ResultEvent.createEvent( result, token,  event.message ) );
+                                         },
+                                         function ( event:FaultEvent ):void
+                                         {
+                                           onFault( event, responder );
+                                         } ) );
+      return token;
+    }
+
+    public function runOnStayAction( geoFenceName:String, responder:IResponder = null ):AsyncToken
+    {
+      ArgumentValidator.notNull( geoFenceName );
+      var args:Array = [Backendless.appId, Backendless.version, geoFenceName ];
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "runOnStayAction", args );
+      token.addResponder( new Responder( function ( event:ResultEvent ):void
+                                         {
+                                           if( responder )
+                                             responder.result( event );
+                                         },
+                                         function ( event:FaultEvent ):void
+                                         {
+                                           onFault( event, responder );
+                                         } ) );
+      return token;
+    }
+
+    public function relativeFind( geoQuery:BackendlessGeoQuery, responder:IResponder = null ):AsyncToken
     {
       ArgumentValidator.notNull( geoQuery, "BackendlessGeoQuery cannot be null" );
       ArgumentValidator.notNull( geoQuery.relativeFindMetadata, "relativeFindMetadata in BackendlessGeoQuery cannot be null" );
@@ -197,7 +267,7 @@ package com.backendless.service
       return token;
     }
 
-    public function loadMetadata( pointOrCluster:*, responder:IResponder ):AsyncToken
+    public function loadMetadata( pointOrCluster:*, responder:IResponder = null ):AsyncToken
     {
       var methodArgs:Array;
 
@@ -211,6 +281,10 @@ package com.backendless.service
       {
         var geoCluster:GeoCluster = pointOrCluster as GeoCluster;
         methodArgs.push( geoCluster.geoQuery );
+      }
+      else
+      {
+        methodArgs.push( null );
       }
 
       var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "loadMetadata", methodArgs );
