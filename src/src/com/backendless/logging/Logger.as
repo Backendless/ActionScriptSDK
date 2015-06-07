@@ -16,29 +16,34 @@ package com.backendless.logging
       this.buffer = Backendless.Logging.buffer;
     }
 
+    public function trace( message:String ):void
+    {
+      buffer.enqueue( loggerName, "TRACE", message );
+    }
+
     public function debug( message:String ):void
     {
-      buffer.enqueue( loggerName, "debug", message );
+      buffer.enqueue( loggerName, "DEBUG", message );
     }
 
     public function info( message:String ):void
     {
-      buffer.enqueue( loggerName, "info", message );
+      buffer.enqueue( loggerName, "INFO", message );
     }
 
     public function warn( message:String, exception:Error = null ):void
     {
-      buffer.enqueue( loggerName, "warn", message, exception );
+      buffer.enqueue( loggerName, "WARN", message, exception );
     }
 
     public function error( message:String, exception:Error = null ):void
     {
-      buffer.enqueue( loggerName, "error", message, exception );
+      buffer.enqueue( loggerName, "ERROR", message, exception );
     }
 
     public function fatal( message:String, exception:Error = null ):void
     {
-      buffer.enqueue( loggerName, "fatal", message, exception );
+      buffer.enqueue( loggerName, "FATAL", message, exception );
     }
   }
 }

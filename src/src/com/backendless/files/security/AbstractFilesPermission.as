@@ -10,7 +10,7 @@ package com.backendless.files.security
   import mx.rpc.AsyncToken;
   import mx.rpc.IResponder;
 
-  class AbstractFilesPermission
+  public class AbstractFilesPermission
   {
     private static const PERMISSION_SERVICE:String = "com.backendless.services.file.FileService";
 

@@ -50,7 +50,7 @@ package com.backendless
 
 	public class Backendless
 	{
-        public static var SITE_URL:String = "https://api.backendless.com";
+       public static var SITE_URL:String = "https://api.backendless.com";
       //public static var SITE_URL:String = "https://api.gmo-mbaas.com";
 
 		public static function get AMF_ENDPOINT():String

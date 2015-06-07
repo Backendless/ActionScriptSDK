@@ -5,15 +5,10 @@ package com.backendless.logging
 {
   public class LogMessage
   {
+    public var logger:String;
+    public var level:String;
     public var timestamp:Date;
     public var message:String;
     public var exception:String;
-
-    public function LogMessage( timestamp:Date, message:String, exception:String ):void
-    {
-      this.timestamp = timestamp;
-      this.message = message;
-      this.exception = exception;
-    }
   }
 }

@@ -224,11 +224,33 @@ package com.backendless.service
       return token;
     }
 
-    public function runOnStayAction( geoFenceName:String, responder:IResponder = null ):AsyncToken
+    public function runOnEnterAction( geoFenceName:String, geoPoint:GeoPoint = null, responder:IResponder = null ):AsyncToken
+    {
+      return runGeoAction( "runOnEnterAction", geoFenceName, geoPoint, responder );
+    }
+
+    public function runOnStayAction( geoFenceName:String, geoPoint:GeoPoint = null, responder:IResponder = null ):AsyncToken
+    {
+      return runGeoAction( "runOnStayAction", geoFenceName, geoPoint, responder );
+
+    }
+
+    public function runOnExitAction( geoFenceName:String, geoPoint:GeoPoint = null, responder:IResponder = null ):AsyncToken
+    {
+      return runGeoAction( "runOnExitAction", geoFenceName, geoPoint, responder );
+    }
+
+    private function runGeoAction( methodName:String, geoFenceName:String, geoPoint:GeoPoint = null, responder:IResponder = null ):AsyncToken
     {
       ArgumentValidator.notNull( geoFenceName );
-      var args:Array = [Backendless.appId, Backendless.version, geoFenceName ];
-      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, "runOnStayAction", args );
+      var args:Array;
+
+      if( geoPoint == null )
+        args = [Backendless.appId, Backendless.version, geoFenceName ];
+      else
+        args = [Backendless.appId, Backendless.version, geoFenceName, geoPoint ];
+
+      var token:AsyncToken = BackendlessClient.instance.invoke( SERVICE_SOURCE, methodName, args );
       token.addResponder( new Responder( function ( event:ResultEvent ):void
                                          {
                                            if( responder )

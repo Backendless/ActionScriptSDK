@@ -4,7 +4,7 @@
 package com.backendless.files.security
 {
   [RemoteClass(alias="com.backendless.services.file.permissions.FileUserPermission")]
-  class FileUserPermission extends BasePermission
+  public class FileUserPermission extends BasePermission
   {
   }
 }

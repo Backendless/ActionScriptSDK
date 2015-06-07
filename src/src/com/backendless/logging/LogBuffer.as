@@ -16,8 +16,7 @@ package com.backendless.logging
   {
     private var numOfMessages:int;
     private var timeFrequency:int;
-    private var logBatches:Object;
-    private var messageCount:int;
+    private var logBatch:LinkedList;
     private var mutex:Mutex;
     private var timer:Timer;
 
@@ -26,8 +25,7 @@ package com.backendless.logging
       mutex = new Mutex();
       numOfMessages = 100;
       timeFrequency = 1000 * 60 * 5; // 5 minutes
-      logBatches = new Object();
-      messageCount = 0;
+      logBatch = new LinkedList();
       setupTimer();
     }
 
@@ -47,10 +45,10 @@ package com.backendless.logging
     public function setLogReportingPolicy( numOfMessages:int, timeFrequency:int ):void
     {
       if( numOfMessages > 1 )
-        ArgumentValidator.greaterThanZero( timeFrequency, "The timeFrequency argument must be a positive value" );
+        ArgumentValidator.greaterThanZero( timeFrequency, "The timeFrequencySec argument must be a positive value" );
 
       this.numOfMessages = numOfMessages;
-      this.timeFrequency = timeFrequency;
+      this.timeFrequency = timeFrequency * 1000;
       setupTimer();
     }
 
@@ -67,62 +65,48 @@ package com.backendless.logging
 
         mutex.lock();
 
-        if( logBatches.hasOwnProperty( logger ) )
-        {
-          logLevels = logBatches[ logger ];
-        }
-        else
-        {
-          logLevels = new Object();
-          logBatches[ logger ] = logLevels;
-        }
+        var logMessage:LogMessage = new LogMessage();
+        logMessage.timestamp = new Date();
+        logMessage.message = message;
+        logMessage.exception = error == null ? null : error.getStackTrace();
+        logMessage.level = logLevel;
+        logMessage.logger = logger;
+        logBatch.push( logMessage );
 
-        if( logLevels.hasOwnProperty( logLevel ) )
+        if( logBatch.length == numOfMessages )
         {
-          messages = logLevels[ logLevel ] as LinkedList;
-        }
-        else
-        {
-          messages = new LinkedList();
-          logLevels[ logLevel ] = messages;
-        }
-
-        messages.push( new LogMessage( new Date(), message, error.getStackTrace() ) );
-        messageCount++;
-
-        if( messageCount == numOfMessages )
+          trace( new Date().toLocaleString() + "  buffer full - flush " + logBatch.length );
           flush();
+          resetTimer();
+        }
 
         mutex.unlock();
       }
     }
 
-    private function flush():void
+    internal function resetTimer():void
     {
-      var allMessages:Array = [];
+      timer.reset();
+      timer.start();
+    }
 
-      for( var logger:String in logBatches )
-      {
-        var messages:Object = logBatches[ logger ];
+    internal function flush():void
+    {
+      if( logBatch.length == 0 )
+        return;
 
-        for( var logLevel:String in messages )
-        {
-          var logBatch:LogBatch = new LogBatch();
-          logBatch.logger = logger;
-          logBatch.logLevel = logLevel;
-          logBatch.messages = messages[ logLevel ];
-          allMessages.push( logBatch );
-          delete messages[ logLevel ];
-        }
+      var messages:Array = new Array();
 
-        delete logBatches[ logger ];
-      }
+      while( logBatch.length != 0 )
+        messages.push( logBatch.shift().value )
 
-      Backendless.Logging.reportBatch( allMessages );
+      Backendless.Logging.reportBatch( messages );
     }
 
     public function flushMessages(event:TimerEvent):void
     {
+      trace( new Date().toLocaleString() + "  timer event - flush " + logBatch.length );
+
       mutex.lock();
       flush();
       mutex.unlock();

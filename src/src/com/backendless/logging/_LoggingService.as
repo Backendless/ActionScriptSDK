@@ -34,9 +34,16 @@ package com.backendless.logging
       loggers = new Object();
     }
 
-    public function setLogReportingPolicy( numOfMessages:int, timeFrequencyMS:int ):void
+    public function setLogReportingPolicy( numOfMessages:int, timeFrequencySec:int ):void
     {
-      _buffer.setLogReportingPolicy( numOfMessages, timeFrequencyMS );
+      _buffer.setLogReportingPolicy( numOfMessages, timeFrequencySec );
+    }
+
+    public function flush():void
+    {
+      trace( new Date().toLocaleString() + "  manual flush ");
+      _buffer.flush();
+      _buffer.resetTimer();
     }
 
     public function getLogger( loggerName:* ):Logger
@@ -59,7 +66,7 @@ package com.backendless.logging
 
     internal function reportSingleLogMessage( logger:String, loglevel:String, message:String, error:Error = null ):void
     {
-      var args:Array = [Backendless.appId, Backendless.version, loglevel, logger, message, error.getStackTrace() ];
+      var args:Array = [Backendless.appId, Backendless.version, loglevel, logger, message, error == null ? "" : error.getStackTrace() ];
       BackendlessClient.instance.invoke( SERVICE_SOURCE, "log", args );
     }
 
