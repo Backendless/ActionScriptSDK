@@ -15,7 +15,7 @@ import mx.rpc.IResponder;
 public class _CustomService
 {
     private static const CUSTOM_SERVICE_ALIAS:String = "com.backendless.services.servercode.CustomServiceHandler";
-    private static const METHOD_NAME_ALIAS:String = "dispatchService"
+    private static const METHOD_NAME_ALIAS:String = "dispatchService";
 
     public function _CustomService()
     {
